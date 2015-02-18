@@ -45,8 +45,6 @@ int Application::main ( const std::vector <std::string> & arguments )
         offset.x *= frametime.asMilliseconds ( ) ;
         offset.y *= frametime.asMilliseconds ( ) ;*/
 
-        this->window.
-
         this->window.clear ( ) ;
 
         this->window.draw ( map ) ;
