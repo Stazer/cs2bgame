@@ -3,7 +3,7 @@ Project ( Name )
 
 Set ( CMAKE_CXX_FLAGS_DEBUG on )
 Add_Definitions ( -g )
-Add_Definitions ( -std=c++11 )
+Add_Definitions ( -std=c++0x )
 
 Include_Directories ( "${CMAKE_CURRENT_LIST_DIR}/../Dependencies/SFML/Include" )
 Link_Directories ( "${CMAKE_CURRENT_LIST_DIR}/../Dependencies/SFML/Libraries" )
