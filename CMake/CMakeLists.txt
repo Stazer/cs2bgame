@@ -1,5 +1,5 @@
 CMake_Minimum_Required ( VERSION 2.8 )
-Project ( Name )
+Project ( cs2bgame )
 
 Add_Definitions ( -std=c++0x )
 
