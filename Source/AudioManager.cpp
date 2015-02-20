@@ -2,9 +2,11 @@
 
 sf::Sound & AudioManager::getSound ( const std::string & name , sf::Sound::Status status )
 {
+	// implement me :)
 }
 const sf::Sound & AudioManager::getSound ( const std::string & name , sf::Sound::Status status ) const
 {
+	// implement me :)
 }
 
 sf::Music & AudioManager::getMusic ( const std::string & name )
