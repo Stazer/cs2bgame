@@ -1,55 +1,44 @@
 #include "Application.hpp"
 #include "ResourceManager.hpp"
+#include "AudioManager.hpp"
+#include "Game.hpp"
 #include "Map.hpp"
 
 int Application::main ( const std::vector <std::string> & arguments )
 {
+    sf::Clock frameClock ;
+    sf::Time frameTime ;
+
+    sf::RenderWindow window ( sf::VideoMode ( 1024 , 768 , 32 ) , "CS2BGame" ) ;
+
+    AudioManager audioManager ;
 	TextureManager textureManager ;
 
-	textureManager.add ( "Data/GrassTiles.png" ) ;
-	textureManager.add ( "Data/SnowTiles.png" ) ;
+	//textureManager.add ( "Data/GrassTiles.png" ) ;
+	//textureManager.add ( "Data/SnowTiles.png" ) ;
 
-    Map map ( textureManager );
+	Game gameState ;
 
-    this->window.create ( sf::VideoMode ( 1024 , 768 , 32 ) , "Map Test" ) ;
-
-    while ( this->window.isOpen ( ) )
+    while ( window.isOpen ( ) )
     {
-        sf::Time frametime = this->frameClock.restart ( ) ;
+        frameTime = frameClock.restart ( ) ;
 
         sf::Event event ;
-
-        while ( this->window.pollEvent ( event ) )
+        while ( window.pollEvent ( event ) )
         {
 
             if ( ( event.type == sf::Event::Closed ) ||
                  ( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape ) )
-                this->window.close ( ) ;
-            else if ( event.type == sf::Event::MouseMoved )
-                std::cout << "( " << sf::Mouse::getPosition ( this->window ).x << "|" << sf::Mouse::getPosition ( this->window ).y << ")\n" ;
+                window.close ( ) ;
+
+        	gameState.handle ( event ) ;
         }
 
-        // camera movement
-        /*sf::Vector2f offset ;
+        gameState.update ( frameTime ) ;
 
-        if ( sf::Keyboard::isKeyPressed ( sf::Keyboard::Right ) )
-            offset.x = 2 ;
-        else if ( sf::Keyboard::isKeyPressed ( sf::Keyboard::Left ) )
-            offset.x = -2 ;
-
-        if ( sf::Keyboard::isKeyPressed ( sf::Keyboard::Up ) )
-            offset.y = -2 ;
-        else if ( sf::Keyboard::isKeyPressed ( sf::Keyboard::Down ) )
-            offset.y = 2 ;
-
-        offset.x *= frametime.asMilliseconds ( ) ;
-        offset.y *= frametime.asMilliseconds ( ) ;*/
-
-        this->window.clear ( ) ;
-
-        this->window.draw ( map ) ;
-
-        this->window.display ( ) ;
+        window.clear ( ) ;
+        gameState.draw ( window ) ;
+        window.display ( ) ;
     }
 
     return 0 ;

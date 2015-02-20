@@ -2,6 +2,7 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
+#include "ResourceManager.hpp"
 
 class Entity : public sf::Drawable
 {
@@ -11,7 +12,7 @@ class Entity : public sf::Drawable
 
         void setTexture ( const TextureManager & textureManager , const std::string & name ) ;
         void setTexture ( const sf::Texture & texture ) ;
-        const sf::Texture const * getTexture ( ) const ;
+        const sf::Texture * const getTexture ( ) const ;
 
         void setPositionX ( float positionX ) ;
         void setPositionY ( float positionY ) ;
