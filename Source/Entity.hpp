@@ -2,43 +2,31 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include "ResourceManager.hpp"
 
-class Entity : public sf::Drawable
+class Map ;
+
+class Entity
 {
 	public :
-		Entity ( const sf::Vector2f & Position = sf::Vector2f ( ) ) ;
-        virtual ~Entity ( ) = default ;
+		Entity ( Map & map ) ;
+		Entity ( Map & map , const sf::Vector2f & position , const sf::Texture & texture ) ;
 
-        void setTexture ( const TextureManager & textureManager , const std::string & name ) ;
-        void setTexture ( const sf::Texture & texture ) ;
-        const sf::Texture * const getTexture ( ) const ;
+		void setTexture ( const sf::Texture & texture ) ;
+		const sf::Texture * const getTexture ( ) const ;
 
-        void setPositionX ( float positionX ) ;
-        void setPositionY ( float positionY ) ;
-        void setPosition ( float positionX , float positionY ) ;
-        void setPosition ( const sf::Vector2f & position ) ;
-        const sf::Vector2f & getPosition ( ) const ;
+		void setPosition ( const sf::Vector2f & position ) ;
+		const sf::Vector2f & getPosition ( ) const ;
 
-		void increaseHealth ( unsigned int health ) ;
-		void decreaseHealth ( unsigned int health ) ;
+		Map & getMap ( ) ;
+		const Map & getMap ( ) const ;
 
-		void setHealth ( unsigned int health ) ;
-		unsigned int getHealth ( ) const ;
+		void move ( const sf::Vector2f & offset ) ;
 
-		void setMaximumHealth ( unsigned int maximumHealth ) ;
-		unsigned int getMaximumHealth ( ) const ;
-
-		bool isDead ( ) const ;
-		bool isAlive ( ) const ;
-
-		virtual void update ( ) = 0 ;
+		virtual void update ( const sf::Time & frameTime ) = 0 ;
+		virtual void draw ( sf::RenderTarget & target ) const ;
 
 	private :
-		void draw ( sf::RenderTarget & target , sf::RenderStates states ) const ;
+		Map & map ;
 
-        sf::Sprite sprite ;
-
-        unsigned int health ;
-        unsigned int maximumHealth ;
+		sf::Sprite sprite ;
 } ;

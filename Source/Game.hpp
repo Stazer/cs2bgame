@@ -2,6 +2,7 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
+#include "Map.hpp"
 
 class Game
 {
@@ -11,5 +12,5 @@ class Game
 		void draw ( sf::RenderTarget & target ) ;
 
     private :
-        sf::Vector2f scrollOffset ;
+    	
 } ;

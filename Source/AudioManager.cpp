@@ -2,12 +2,12 @@
 
 sf::Sound & AudioManager::getSound ( const std::string & name , sf::Sound::Status status )
 {
-   return sf::Sound();
+    return *this->sounds.begin ( )->second ;
 	// implement me :)
 }
 const sf::Sound & AudioManager::getSound ( const std::string & name , sf::Sound::Status status ) const
 {
-   return sf::Sound();
+    return *this->sounds.begin ( )->second ;
 	// implement me :)
 }
 

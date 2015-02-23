@@ -4,16 +4,23 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "ResourceManager.hpp"
+#include "MapArea.hpp"
 
-class Map : public sf::Drawable
+class Game ;
+class Entity ;
+
+class Map
 {
 	public :
-		Map ( const TextureManager & textureManager ) ;
+		Map ( Game & game ) ;
 
-		void update ( const sf::Clock & frametime ) ;
+		void update ( sf::Time & frameTime ) ;
+		void draw ( sf::RenderTarget & target ) ;
 
 	private :
-		void draw ( sf::RenderTarget & target , sf::RenderStates states ) const ;
+		Game & game ;
 
-		std::vector <sf::Sprite> sprites ;
+		std::vector <MapArea> areas ;
+
+		std::vector <Entity *> tiles ;
 } ;
