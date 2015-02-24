@@ -3,8 +3,10 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <memory> //unique_ptr
 #include "ResourceManager.hpp"
 #include "MapArea.hpp"
+
 
 class Game ;
 class Entity ;
@@ -18,9 +20,10 @@ class Map
 		void draw ( sf::RenderTarget & target ) ;
 
 	private :
+      /*  */
 		Game & game ;
 
 		std::vector <MapArea> areas ;
-
-		std::vector <Entity *> tiles ;
+      /*  */
+      std::vector <std::unique_ptr <Entity*> > tiles ;
 } ;

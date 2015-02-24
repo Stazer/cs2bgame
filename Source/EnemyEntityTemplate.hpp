@@ -3,6 +3,7 @@
 #include <string>
 #include "EnemyEntity.hpp"
 
+/*  */ 
 class EnemyEntityTemplate
 {
 	public :
@@ -21,7 +22,8 @@ class EnemyEntityTemplate
 		void setSpeedPoints ( float speedPoints ) ;
 		float getSpeedPoints ( ) const ;
 
-		EnemyEntity * CreateEnemyEntity ( ) const ;
+      /*  */
+      EnemyEntity * CreateEnemyEntity ( const sf::Vector2f & position, float rotation ) const ;
 	
 	private :
 		std::string textureName ;

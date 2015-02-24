@@ -7,22 +7,24 @@
 
 class AudioManager
 {
-    public :
-        sf::Sound & getSound ( const std::string & name , sf::Sound::Status status = sf::Sound::Stopped ) ;
-        const sf::Sound & getSound ( const std::string & name , sf::Sound::Status status = sf::Sound::Stopped ) const ;
+   private :
+      std::unordered_multimap <std::string , std::unique_ptr <sf::Sound>> sounds ;
 
-        sf::Music & getMusic ( const std::string & name ) ;
-        const sf::Music & getMusic ( const std::string & name ) const ;
+      SoundBufferManager soundBufferManager ;
+      MusicManager musicManager ;
 
-        SoundBufferManager & getSoundBufferManager ( ) ;
-        const SoundBufferManager & getSoundBufferManager ( ) const ;
+   public :
+      sf::Sound & getSound ( const std::string & name , sf::Sound::Status status = sf::Sound::Stopped ) ;
+      const sf::Sound & getSound ( const std::string & name , sf::Sound::Status status = sf::Sound::Stopped ) const ;
 
-        MusicManager & getMusicManager ( ) ;
-        const MusicManager & getMusicManager ( ) const ;
+      sf::Music & getMusic ( const std::string & name ) ;
+      const sf::Music & getMusic ( const std::string & name ) const ;
 
-    private :
-        std::unordered_multimap <std::string , std::unique_ptr <sf::Sound>> sounds ;
+      SoundBufferManager & getSoundBufferManager ( ) ;
+      const SoundBufferManager & getSoundBufferManager ( ) const ;
 
-        SoundBufferManager soundBufferManager ;
-        MusicManager musicManager ;
+      MusicManager & getMusicManager ( ) ;
+      const MusicManager & getMusicManager ( ) const ;
+
+
 } ;

@@ -1,3 +1,5 @@
+/* special file for implementing template classes */
+
 template <typename Type>
 void ResourceManager <Type>::add ( const std::string & file )
 {

@@ -23,6 +23,7 @@ int Application::main ( const std::vector <std::string> & arguments )
     {
         frameTime = frameClock.restart ( ) ;
 
+
         sf::Event event ;
         while ( window.pollEvent ( event ) )
         {
