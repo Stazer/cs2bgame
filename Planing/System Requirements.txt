@@ -1,0 +1,6 @@
+Minimum System Requirements
+
+100 MB Ram
+1 GHz CPU
+32 MB Videoram
+OpenGL 3.0
