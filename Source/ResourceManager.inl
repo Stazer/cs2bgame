@@ -17,7 +17,7 @@ void ResourceManager <Type>::add ( const std::string & file )
 template <typename Type>
 void ResourceManager <Type>::add ( const std::string & name , const std::string & file )
 {
-    this->resources [ name ] = std::unique_ptr <Type> ( new Type ( ) ) ;
+    this->resources [ name ] = std::shared_ptr <Type> ( new Type ( ) ) ;
 
     this->loadResource ( * this->resources [ name ] , file ) ;
 }

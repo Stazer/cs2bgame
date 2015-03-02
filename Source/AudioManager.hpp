@@ -8,12 +8,14 @@
 class AudioManager
 {
    private :
-      std::unordered_multimap <std::string , std::unique_ptr <sf::Sound>> sounds ;
+      std::unordered_multimap <std::string , std::shared_ptr <sf::Sound>> sounds ;
 
       SoundBufferManager soundBufferManager ;
       MusicManager musicManager ;
 
    public :
+      AudioManager ( ) ;
+
       sf::Sound & getSound ( const std::string & name , sf::Sound::Status status = sf::Sound::Stopped ) ;
       const sf::Sound & getSound ( const std::string & name , sf::Sound::Status status = sf::Sound::Stopped ) const ;
 
@@ -25,6 +27,4 @@ class AudioManager
 
       MusicManager & getMusicManager ( ) ;
       const MusicManager & getMusicManager ( ) const ;
-
-
 } ;
