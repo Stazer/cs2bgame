@@ -1,3 +1,7 @@
+/* for help look at:
+ http://www.sfml-dev.org/tutorials/2.2/
+ */
+
 #pragma once
 
 #include <SFML/System.hpp>
