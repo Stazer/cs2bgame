@@ -35,7 +35,7 @@ class Map
 
       /* vector stores the map  "tiles" which are added at infinitum so that 
        the player can explore as much as they like and the map will automatically
-       create new areas, think background picture */
+       create new areas, think background pictures */
 		std::vector <MapArea> areas ;
 
       /* vector stores entity sprites, player entity, enemy entity, and static 

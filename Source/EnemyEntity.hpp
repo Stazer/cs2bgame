@@ -24,6 +24,10 @@ class EnemyEntity : public DynamicEntity
 		virtual void draw ( sf::RenderTarget & target ) const ;
 	
 	private :
+      /* this member will always be set to the player entity because we want the enemies
+       to only attack the player and not eachother */
 		DynamicEntity * targetEntity ;
+
+      /* this is a small sprite which will visually display the health of the enemy */
 		sf::RectangleShape healthBar ;
 } ;
