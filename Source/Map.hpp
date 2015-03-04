@@ -25,5 +25,5 @@ class Map
 
 		std::vector <MapArea> areas ;
       /*  */
-      std::vector <std::unique_ptr <Entity*> > tiles ;
+      std::vector <std::unique_ptr <Entity*> > entities ;
 } ;

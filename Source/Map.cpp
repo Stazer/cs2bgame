@@ -1,2 +1,13 @@
 #include "Map.hpp"
-#include <cstdlib>
+
+Map::Map ( Game & game ) :
+	game ( game )
+{
+}
+
+void Map::update ( sf::Time & frameTime )
+{
+}
+void Map::draw ( sf::RenderTarget & target )
+{
+}
