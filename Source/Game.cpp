@@ -1,5 +1,6 @@
 #include "Game.hpp"
 
+/*  */
 void Game::handle ( const sf::Event & event )
 {
 }

@@ -1,3 +1,9 @@
+/* 
+ Dynamic Entities include the player and enemies. These entities must be able to move, rotate, and attack.
+ for help look at:
+ http://www.sfml-dev.org/tutorials/2.2/
+ */
+
 #pragma once
 
 #include "Entity.hpp"
@@ -6,7 +12,9 @@ class DynamicEntity : public Entity
 {
 	public :
 		DynamicEntity ( Map & map ) ;
-		DynamicEntity ( Map & map , const sf::Vector2f & position , const sf::Texture & texture , unsigned int healthPoints , unsigned int maximumHealth ) ;
+		DynamicEntity ( Map & map , const sf::Vector2f & position ,
+                     const sf::Texture & texture , unsigned int healthPoints ,
+                     unsigned int maximumHealth ) ;
       virtual ~DynamicEntity () = default;
 
 		void setMaximumHealth ( unsigned int maximumHealth ) ;
@@ -24,7 +32,7 @@ class DynamicEntity : public Entity
 		void setSpeedPoints ( unsigned int speedPoints ) ;
 		unsigned int getSpeedPoints ( ) const ;
 
-      /*  */
+      /* Implement later */
 		void attack ( DynamicEntity & entity ) ;
 	
 	private :

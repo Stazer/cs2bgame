@@ -1,3 +1,7 @@
+/* for help look at:
+ http://www.sfml-dev.org/tutorials/2.2/
+ */
+
 #pragma once
 
 #include <vector>
@@ -9,7 +13,8 @@ class MapArea
 		{
 			Snow ,
 			Grass ,
-			Dirt
+			Dirt ,
+         Lava
 		} ;
 		
 		MapArea ( TileType type , const sf::Vector2f & position , const sf::Vector2f & size ) ;
@@ -26,6 +31,7 @@ class MapArea
 	
 		sf::Vector2f position ;
 		sf::Vector2f size ;
-	
+
+      /* vector holds all pictures (sprites) that will make up the map */
 		std::vector <sf::Sprite> tiles ;
 } ;

@@ -17,7 +17,7 @@ int Application::main ( const std::vector <std::string> & arguments )
 	//textureManager.add ( "Data/GrassTiles.png" ) ;
 	//textureManager.add ( "Data/SnowTiles.png" ) ;
 
-	Game gameState ;
+	//Game gameState ;
 
     while ( window.isOpen ( ) )
     {
@@ -32,13 +32,13 @@ int Application::main ( const std::vector <std::string> & arguments )
                  ( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape ) )
                 window.close ( ) ;
 
-        	gameState.handle ( event ) ;
+        	//gameState.handle ( event ) ;
         }
 
-        gameState.update ( frameTime ) ;
+       // gameState.update ( frameTime ) ;
 
         window.clear ( ) ;
-        gameState.draw ( window ) ;
+        //gameState.draw ( window ) ;
         window.display ( ) ;
     }
 
