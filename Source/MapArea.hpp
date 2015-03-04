@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
 #include <vector>
 
 class MapArea
@@ -14,7 +16,7 @@ class MapArea
 			Snow ,
 			Grass ,
 			Dirt ,
-         Lava
+         	Lava
 		} ;
 		
 		MapArea ( TileType type , const sf::Vector2f & position , const sf::Vector2f & size ) ;
