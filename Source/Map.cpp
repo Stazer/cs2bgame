@@ -5,8 +5,14 @@ Map::Map ( Game & game ) :
 {
 }
 
-void Map::update ( sf::Time & frameTime )
+void Map::update ( const sf::Time & frameTime )
 {
+	bool found = false ;
+	
+	for ( auto & area : this->areas )
+	{
+			
+	}
 }
 void Map::draw ( sf::RenderTarget & target )
 {

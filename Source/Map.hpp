@@ -25,7 +25,7 @@ class Map
 		Map ( Game & game ) ;
 
       /* Justus and Brendan will implement */
-		void update ( sf::Time & frameTime ) ;
+		void update ( const sf::Time & frameTime ) ;
 
 		void draw ( sf::RenderTarget & target ) ;
 

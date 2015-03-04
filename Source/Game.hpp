@@ -8,13 +8,20 @@
 #include <SFML/Graphics.hpp>
 #include "Map.hpp"
 #include "ResourceManager.hpp"
+#include "Interface.hpp"
 
 class AudioManager;
 
 class Game
 {
 	public :
-      Game (const TextureManager& textureManager, const AudioManager& audioManager);
+      Game (TextureManager& textureManager, AudioManager& audioManager);
+
+      const TextureManager& getTextureManager()const;
+      TextureManager& getTextureManager();
+
+      const AudioManager& getAudioManager()const;
+      AudioManager& getAudioManager();
 
       /*  */
       void handle ( const sf::Event & event ) ;
@@ -24,6 +31,9 @@ class Game
 		void draw ( sf::RenderTarget & target ) ;
 
     private :
-      const TextureManager& textureManager;
-      const AudioManager& audioManager;
+      TextureManager& textureManager;
+      AudioManager& audioManager;
+
+      Map map;
+      Interface interface;
 } ;

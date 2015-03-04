@@ -11,7 +11,7 @@ class Game;
 class Interface
 {
    public :
-      Interface (const TextureManager& textureManager, const AudioManager& audioManager);
+      Interface (Game &game);
 
       /*  */
       void handle ( const sf::Event & event ) ;
