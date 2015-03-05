@@ -13,7 +13,7 @@
 #include <vector>
 #include <memory> //unique_ptr
 #include "ResourceManager.hpp"
-#include "MapArea.hpp"
+#include "MapChunk.hpp"
 #include <map>
 #include <functional>
 
@@ -56,7 +56,7 @@ class Map
       /*  */
 		Game & game ;
 
-		std::unordered_map <sf::Vector2i , std::shared_ptr <MapArea>> areas;
+		std::unordered_map <sf::Vector2i , std::shared_ptr <MapChunk>> chunks;
 
       /* vector stores entity sprites, player entity, enemy entity, and static
        entities like tress, rocks, and lava */

@@ -33,15 +33,15 @@ void Map::update ( const sf::Time & frameTime )
     {
         for ( chunkPosition.y = minimumChunkPosition.y ; chunkPosition.y <= maximumChunkPosition.y ; ++chunkPosition.y )
         {
-            if ( this->areas.find ( chunkPosition ) == this->areas.end ( ) )
+            if ( this->chunks.find ( chunkPosition ) == this->chunks.end ( ) )
             {
-                this->areas [ chunkPosition ] = std::shared_ptr <MapArea> ( new MapArea ( *this , rand ( ) % 2 ? MapArea::Dirt : MapArea::Grass , sf::Vector2f ( chunkPosition.x * camera.getSize ( ).x , chunkPosition.y * camera.getSize ( ).y ) , camera.getSize () ) ) ;
+                this->chunks [ chunkPosition ] = std::shared_ptr <MapChunk> ( new MapChunk ( *this , sf::Vector2f ( chunkPosition.x * camera.getSize ( ).x , chunkPosition.y * camera.getSize ( ).y ) , camera.getSize () ) ) ;
             }
         }
     }
 }
 void Map::draw ( sf::RenderTarget & target )
 {
-	for ( auto & area : this->areas )
-		area.second->draw ( target ) ;
+	for ( auto & chunk : this->chunks )
+		chunk.second->draw ( target ) ;
 }
