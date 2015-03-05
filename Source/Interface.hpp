@@ -11,7 +11,9 @@ class Game;
 class Interface
 {
    public :
-      Interface (Game &game);
+      Interface (Game &game, const sf::View & defaultView);
+
+      const sf::View& getCamera()const;
 
       /*  */
       void handle ( const sf::Event & event ) ;
@@ -22,4 +24,7 @@ class Interface
 
    private:
       Game& game;
+      sf::View camera ;
+
+      sf::Vector2f offset;
 } ;

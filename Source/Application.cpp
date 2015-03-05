@@ -14,10 +14,10 @@ int Application::main ( const std::vector <std::string> & arguments )
     AudioManager audioManager ;
 	TextureManager textureManager ;
 
-	//textureManager.add ( "Data/GrassTiles.png" ) ;
-	//textureManager.add ( "Data/SnowTiles.png" ) ;
+	textureManager.add ( "Data/Dirt.png" ) ;
+	textureManager.add ( "Data/Grass.png" ) ;
 
-	Game gameState ( textureManager , audioManager ) ;
+	Game gameState ( textureManager , audioManager , window.getView ( )) ;
 
     while ( window.isOpen ( ) )
     {

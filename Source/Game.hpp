@@ -15,13 +15,16 @@ class AudioManager;
 class Game
 {
 	public :
-      Game (TextureManager& textureManager, AudioManager& audioManager);
+      Game (TextureManager& textureManager, AudioManager& audioManager, const sf::View & defaultView);
 
       const TextureManager& getTextureManager()const;
       TextureManager& getTextureManager();
 
       const AudioManager& getAudioManager()const;
       AudioManager& getAudioManager();
+
+      const Interface& getInterface() const;
+      Interface& getInterface();
 
       /*  */
       void handle ( const sf::Event & event ) ;

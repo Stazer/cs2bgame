@@ -2,8 +2,8 @@
  http://www.sfml-dev.org/tutorials/2.2/
  */
 
-/* 
- 
+/*
+
  */
 
 #pragma once
@@ -14,15 +14,38 @@
 #include <memory> //unique_ptr
 #include "ResourceManager.hpp"
 #include "MapArea.hpp"
-
+#include <map>
+#include <functional>
 
 class Game ;
 class Entity ;
+
+namespace std
+{
+    template <>
+      struct hash<sf::Vector2i>
+      {
+        std::size_t operator()(const sf::Vector2i & vector) const
+        {
+            std::size_t hashX = std::hash <int> ( ) ( vector.x ) ;
+            std::size_t hashY = std::hash <int> ( ) ( vector.y ) ;
+
+            return hashX ^ hashY ;
+        }
+      };
+}
+
 
 class Map
 {
 	public :
 		Map ( Game & game ) ;
+
+		Map ( const Map & map ) = delete ;
+		Map & operator = ( const Map & map ) = delete ;
+
+		const Game & getGame ( ) const ;
+		Game & getGame ( ) ;
 
       /* Justus and Brendan will implement */
 		void update ( const sf::Time & frameTime ) ;
@@ -33,12 +56,9 @@ class Map
       /*  */
 		Game & game ;
 
-      /* vector stores the map  "tiles" which are added at infinitum so that 
-       the player can explore as much as they like and the map will automatically
-       create new areas, think background pictures */
-		std::vector <MapArea> areas ;
+		std::unordered_map <sf::Vector2i , std::shared_ptr <MapArea>> areas;
 
-      /* vector stores entity sprites, player entity, enemy entity, and static 
+      /* vector stores entity sprites, player entity, enemy entity, and static
        entities like tress, rocks, and lava */
       std::vector <std::unique_ptr <Entity*> > entities ;
 } ;
