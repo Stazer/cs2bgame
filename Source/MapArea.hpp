@@ -15,10 +15,12 @@ class MapArea
 	public :
 		enum TileType
 		{
-			Snow ,
+			Snow = 0 ,
 			Grass ,
 			Dirt ,
-         	Lava
+			Sand ,
+
+			MAX
 		} ;
 
 		MapArea ( Map & map , TileType type , const sf::Vector2f & position , const sf::Vector2f & size ) ;

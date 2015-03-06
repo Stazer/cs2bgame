@@ -12,6 +12,10 @@ MapArea::MapArea ( Map & map , MapArea::TileType type , const sf::Vector2f & pos
 
     if ( type == MapArea::Dirt )
         texture = & map.getGame ( ).getTextureManager ( ).get ( "Dirt" ) ;
+    else if ( type == MapArea::Snow )
+        texture = & map.getGame ( ).getTextureManager ( ).get ( "Snow" ) ;
+    else if ( type == MapArea::Sand )
+        texture = & map.getGame ( ).getTextureManager ( ).get ( "Sand" ) ;
     else
         texture = & map.getGame ( ).getTextureManager ( ).get ( "Grass" ) ;
 
