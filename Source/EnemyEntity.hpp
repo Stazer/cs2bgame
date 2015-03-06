@@ -24,6 +24,8 @@ class EnemyEntity : public DynamicEntity
 		virtual void draw ( sf::RenderTarget & target ) const ;
 	
 	private :
+      float detectionDistance;
+
       /* this member will always be set to the player entity because we want the enemies
        to only attack the player and not eachother */
 		DynamicEntity * targetEntity ;

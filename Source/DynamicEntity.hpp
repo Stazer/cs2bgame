@@ -14,7 +14,7 @@ class DynamicEntity : public Entity
 		DynamicEntity ( Map & map ) ;
 		DynamicEntity ( Map & map , const sf::Vector2f & position ,
                      const sf::Texture & texture , unsigned int healthPoints ,
-                     unsigned int maximumHealth ) ;
+                     unsigned int maximumHealth, unsigned int attackPoints, unsigned int speedPoints ) ;
       virtual ~DynamicEntity () = default;
 
 		void setMaximumHealth ( unsigned int maximumHealth ) ;

@@ -11,7 +11,9 @@ class Player : public DynamicEntity
 		
 	public :
 		Player ( Map & map ) ;
-		Player ( Map & map , const sf::Vector2f & position , const sf::Texture & texture , unsigned int healthPoints , unsigned int maximumHealth ) ;
+		Player ( Map & map , const sf::Vector2f & position , const sf::Texture & texture ,
+              unsigned int healthPoints , unsigned int maximumHealth, unsigned int attackPoints,
+              unsigned int speedPoints, sf::Vector2f offset ) ;
 
       /* sets the offset y to -(speedPoints), so that the entity will move up the screen */
 		void moveUp ( ) ;
