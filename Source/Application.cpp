@@ -14,15 +14,16 @@ int Application::main ( const std::vector <std::string> & arguments )
     AudioManager audioManager ;
 	TextureManager textureManager ;
 
-	//textureManager.add ( "Data/GrassTiles.png" ) ;
-	//textureManager.add ( "Data/SnowTiles.png" ) ;
+	textureManager.add ( "Data/Dirt.png" ) ;
+	textureManager.add ( "Data/Grass.png" ) ;
+	textureManager.add ( "Data/Sand.png" ) ;
+	textureManager.add ( "Data/Snow.png" ) ;
 
-	Game gameState ;
+	Game gameState ( textureManager , audioManager , window.getView ( )) ;
 
     while ( window.isOpen ( ) )
     {
         frameTime = frameClock.restart ( ) ;
-
 
         sf::Event event ;
         while ( window.pollEvent ( event ) )
@@ -35,7 +36,7 @@ int Application::main ( const std::vector <std::string> & arguments )
         	gameState.handle ( event ) ;
         }
 
-        gameState.update ( frameTime ) ;
+       	gameState.update ( frameTime ) ;
 
         window.clear ( ) ;
         gameState.draw ( window ) ;
