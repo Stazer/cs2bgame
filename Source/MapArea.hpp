@@ -32,6 +32,8 @@ class MapArea
       /*  */
 		void draw ( sf::RenderTarget & target ) const ;
 
+		static MapArea::TileType getRandomType ( ) ;
+
 	private :
         Map & map ;
 

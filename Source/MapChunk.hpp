@@ -13,4 +13,6 @@ class MapChunk
 
 	private :
 		std::vector <MapArea> areas ;
+
+		static MapArea::TileType getRandomType ( ) ;
 } ;

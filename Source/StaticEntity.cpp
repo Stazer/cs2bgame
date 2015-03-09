@@ -1,6 +1,6 @@
 #include "StaticEntity.hpp"
 
-StaticEntity::StaticEntity ( Map & map ) :
+/*StaticEntity::StaticEntity ( Map & map ) :
 	Entity ( map )
 {
 }
@@ -8,7 +8,8 @@ StaticEntity::StaticEntity ( Map & map , const sf::Vector2f & position ,  const 
 	Entity ( map , position , texture )
 {
 }
-		  
+
 void StaticEntity::update ( const sf::Time & frameTime )
 {
 }
+*/

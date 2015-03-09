@@ -66,3 +66,8 @@ void MapArea::draw ( sf::RenderTarget & target ) const
 	for ( auto & tile : this->tiles )
 		target.draw ( tile ) ;
 }
+
+MapArea::TileType MapArea::getRandomType ( )
+{
+    return static_cast <MapArea::TileType> ( rand ( ) % MapArea::MAX );
+}
