@@ -15,15 +15,27 @@ void Player::moveUp ( )
 }
 
 /* sets the offset y to +(speedPoints), so that the entity will move down the screen */
-void Player::moveDown ( ) ;
+void Player::moveDown ( )
+{
+
+}
 
 /* sets the offset x to -(speedPoints), so that the entity will move left on the screen */
-void Player::moveLeft ( ) ;
+void Player::moveLeft ( )
+{
+
+}
 
 /* sets the offset x to +(speedPoints), so that the entity will move right on the screen */
-void Player::moveRight ( ) ;
+void Player::moveRight ( )
+{
+
+}
 
 /* will call the move method of the classs; the frameTime parameter is
  multiplied by the offset (measured in pixels) and updates the
  player position */
-void Player::update ( const sf::Time & frameTime ) ;
+void Player::update ( const sf::Time & frameTime )
+{
+   
+}
