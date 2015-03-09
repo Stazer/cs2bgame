@@ -60,5 +60,5 @@ class Map
 
       /* vector stores entity sprites, player entity, enemy entity, and static
        entities like tress, rocks, and lava */
-      std::vector <std::unique_ptr <Entity*> > entities ;
+        std::vector <std::shared_ptr <Entity> > entities ;
 } ;
