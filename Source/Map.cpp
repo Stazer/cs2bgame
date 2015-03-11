@@ -44,4 +44,7 @@ void Map::draw ( sf::RenderTarget & target ) const
 {
 	for ( auto & chunk : this->chunks )
 		chunk.second->draw ( target ) ;
+
+	for ( auto & entity : this->entities )
+		entity->draw ( target ) ;
 }

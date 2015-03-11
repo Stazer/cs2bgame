@@ -33,6 +33,11 @@ class Entity
 
 		void move ( const sf::Vector2f & offset ) ;
 
+        sf::FloatRect getGlobalBounds ( ) const ;
+        sf::FloatRect getLocalBounds ( ) const ;
+
+        float getRadius ( ) const ;
+
 		virtual void update ( const sf::Time & frameTime ) = 0 ;
 
         /* the draw method of the target is called and sprite is one of its arguments

@@ -57,7 +57,7 @@ class Map
 
         /* stores chunks with position of its key, for making the random map generation
         possible */
-		std::unordered_map <sf::Vector2i , std::shared_ptr <MapChunk>> chunks;
+		std::unordered_map <sf::Vector2i , std::shared_ptr <MapChunk>> chunks ;
 
         /* vector stores entity sprites, player entity, enemy entity, and static
         entities like tress, rocks, and lava */

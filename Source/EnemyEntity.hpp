@@ -13,7 +13,7 @@ class EnemyEntity : public DynamicEntity
 		EnemyEntity ( Map & map , const sf::Vector2f & position , const sf::Texture & texture ,
                    unsigned int healthPoints , unsigned int maximumHealth, unsigned int attackPoints,
                    unsigned int speedPoints, float detectionDistance ) ;
-        virtual ~EnemyEntity () = default;
+        virtual ~EnemyEntity () = default ;
 
         /* this is a distance in pixels in which the artifical intelligence of the enemies
         recognizes the player and attacks them */

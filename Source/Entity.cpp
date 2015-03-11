@@ -45,6 +45,20 @@ void Entity::move ( const sf::Vector2f & offset )
    this->sprite.move ( offset ) ;
 }
 
+sf::FloatRect Entity::getGlobalBounds ( ) const
+{
+    return this->sprite.getGlobalBounds ( ) ;
+}
+sf::FloatRect Entity::getLocalBounds ( ) const
+{
+    return this->sprite.getLocalBounds ( ) ;
+}
+
+float Entity::getRadius ( ) const
+{
+    return ( this->sprite.getLocalBounds ( ).width + this->sprite.getLocalBounds ( ).height ) / 4.0f ;
+}
+
 /* the draw method of the target is called and sprite is one of its arguments
  renderTexture.draw(sprite); // or any other drawable */
 void Entity::draw ( sf::RenderTarget & target ) const
