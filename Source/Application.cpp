@@ -18,8 +18,9 @@ int Application::main ( const std::vector <std::string> & arguments )
 	textureManager.add ( "Data/Grass.png" ) ;
 	textureManager.add ( "Data/Sand.png" ) ;
 	textureManager.add ( "Data/Snow.png" ) ;
+	textureManager.add ( "Data/Player.png" ) ;
 
-	Game gameState ( textureManager , audioManager , window.getView ()) ;
+	Game gameState ( textureManager , audioManager , window.getView ( ) ) ;
 
     while ( window.isOpen ( ) )
     {

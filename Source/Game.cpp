@@ -1,36 +1,58 @@
 #include "Game.hpp"
 
-Game::Game (TextureManager& textureManager, AudioManager& audioManager, const sf::View & defaultView):
-	textureManager(textureManager),
-	audioManager(audioManager),
-	map(*this),
-	interface(*this, defaultView)
+Game::Game ( TextureManager & textureManager, AudioManager & audioManager , const sf::View & defaultView ) :
+	textureManager ( textureManager ) ,
+	audioManager ( audioManager ) ,
+	map ( * this ) ,
+	player ( this->map ) ,
+	interface ( * this , defaultView )
 {
+    this->player.setTexture ( this->textureManager.get ( "Player" ) ) ;
+    this->player.setPosition ( defaultView.getCenter ( ) ) ;
+    this->player.setSpeedPoints ( 100 ) ;
 }
 
-const TextureManager& Game::getTextureManager()const
+const TextureManager & Game::getTextureManager ( ) const
 {
     return this->textureManager ;
 }
-TextureManager& Game::getTextureManager()
+TextureManager & Game::getTextureManager ( )
 {
     return this->textureManager ;
 }
 
-const AudioManager& Game::getAudioManager()const
+const AudioManager& Game::getAudioManager ( ) const
 {
     return this->audioManager ;
 }
-AudioManager& Game::getAudioManager()
+AudioManager& Game::getAudioManager ( )
 {
     return this->audioManager ;
 }
 
-const Interface& Game::getInterface() const
+const Map & Game::getMap ( ) const
+{
+    return this->map ;
+}
+Map & Game::getMap ( )
+{
+    return this->map ;
+}
+
+const Player & Game::getPlayer ( ) const
+{
+    return this->player ;
+}
+Player & Game::getPlayer ( )
+{
+    return this->player ;
+}
+
+const Interface& Game::getInterface ( ) const
 {
     return this->interface;
 }
-Interface& Game::getInterface()
+Interface& Game::getInterface ( )
 {
     return this->interface;
 }
@@ -43,11 +65,12 @@ void Game::handle ( const sf::Event & event )
 void Game::update ( const sf::Time & frameTime )
 {
     this->interface.update ( frameTime ) ;
-
-	this->map.update(frameTime);
+	this->map.update ( frameTime ) ;
+	this->player.update ( frameTime ) ;
 }
 void Game::draw ( sf::RenderTarget & target )
 {
+	this->map.draw ( target ) ;
+    this->player.draw ( target ) ;
     this->interface.draw ( target ) ;
-	this->map.draw(target);
 }
