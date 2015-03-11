@@ -3,11 +3,20 @@
 #include "Game.hpp"
 #include "Interface.hpp"
 #include "MapArea.hpp"
+#include "EnemyEntity.hpp"
 
 Map::Map ( Game & game ) :
 	game ( game )
 {
     srand ( time ( nullptr ) ) ;
+
+    EnemyEntity entity ( * this );
+
+    entity.setTexture ( this->game.getTextureManager ( ).get ( "Player" ) ) ;
+    entity.setMaximumHealth(1000) ;
+    entity.setHealth(750) ;
+
+    this->entities.push_back ( std::shared_ptr <Entity> ( new EnemyEntity ( entity ) ) ) ;
 }
 
 const Game & Map::getGame ( ) const
@@ -17,6 +26,15 @@ const Game & Map::getGame ( ) const
 Game & Map::getGame ( )
 {
     return this->game ;
+}
+
+const Player & Map::getPlayer ( ) const
+{
+    return this->game.getPlayer ( ) ;
+}
+Player & Map::getPlayer ( )
+{
+    return this->game.getPlayer ( ) ;
 }
 
 void Map::update ( const sf::Time & frameTime )
@@ -39,6 +57,9 @@ void Map::update ( const sf::Time & frameTime )
             }
         }
     }
+
+	for ( auto & entity : this->entities )
+		entity->update ( frameTime ) ;
 }
 void Map::draw ( sf::RenderTarget & target ) const
 {

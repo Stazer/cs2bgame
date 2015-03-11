@@ -14,6 +14,10 @@ EnemyEntity::EnemyEntity ( Map & map ) :
     DynamicEntity ( map ) ,
     detectionDistance ( 0 )
 {
+    this->healthBar.setFillColor ( sf::Color::Red ) ;
+    this->healthBar.setOutlineColor ( sf::Color::Black ) ;
+    this->healthBar.setOutlineThickness ( 1 ) ;
+    this->healthBar.setSize ( sf::Vector2f ( 100 , 5 ) ) ;
 }
 
 EnemyEntity::EnemyEntity ( Map & map , const sf::Vector2f & position , const sf::Texture & texture ,
@@ -39,10 +43,14 @@ float EnemyEntity::getDetectionDistance ( ) const
 void EnemyEntity::update ( const sf::Time & frameTime )
 {
     DynamicEntity::update ( frameTime ) ;
+    this->healthBar.setSize ( sf::Vector2f ( this->getLocalBounds ( ).width * 1.5f * this->getHealth ( ) / this->getMaximumHealth ( ) , this->healthBar.getSize ( ).y ) ) ;
+    this->healthBar.setOrigin ( this->healthBar.getSize ( ) * 0.5f ) ;
+    this->healthBar.setPosition ( this->getPosition ( ).x , this->getPosition ( ).y - this->getLocalBounds ( ).height ) ;
 }
 
 /*  */
 void EnemyEntity::draw ( sf::RenderTarget & target ) const
 {
     DynamicEntity::draw ( target ) ;
+    target.draw ( this->healthBar ) ;
 }

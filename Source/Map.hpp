@@ -47,6 +47,9 @@ class Map
 		const Game & getGame ( ) const ;
 		Game & getGame ( ) ;
 
+		const Player & getPlayer ( ) const ;
+		Player & getPlayer ( ) ;
+
         /* Justus and Brendan will implement */
 		void update ( const sf::Time & frameTime ) ;
 
