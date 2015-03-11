@@ -103,3 +103,8 @@ void DynamicEntity::update ( const sf::Time & frameTime )
 
     this->offset = sf::Vector2f ( ) ;
 }
+
+void DynamicEntity::attack ( DynamicEntity & entity )
+{
+    entity.decreaseHealth ( this->getAttackPoints ( ) ) ;
+}

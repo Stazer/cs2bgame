@@ -64,9 +64,9 @@ void Game::handle ( const sf::Event & event )
 }
 void Game::update ( const sf::Time & frameTime )
 {
-    this->interface.update ( frameTime ) ;
 	this->map.update ( frameTime ) ;
 	this->player.update ( frameTime ) ;
+    this->interface.update ( frameTime ) ;
 }
 void Game::draw ( sf::RenderTarget & target )
 {

@@ -49,7 +49,6 @@ class DynamicEntity : public Entity
         player position */
 		void update ( const sf::Time & frameTime ) ;
 
-        /* Implement later */
 		void attack ( DynamicEntity & entity ) ;
 
 	private :

@@ -41,7 +41,7 @@ void Interface::draw ( sf::RenderTarget & target )
     view.setCenter ( this->game.getPlayer ( ).getPosition ( ) ) ;
     this->camera = view ;
 
-    target.setView( target.getDefaultView ( ) ) ;
+    target.setView ( target.getDefaultView ( ) ) ;
     target.draw ( this->healthBar ) ;
 
 
