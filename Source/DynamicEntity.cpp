@@ -66,3 +66,40 @@ unsigned int DynamicEntity::getSpeedPoints ( ) const
 {
    return this->speedPoints;
 }
+
+/* sets the offset y to -(speedPoints), so that the entity will move up the screen */
+void DynamicEntity::moveUp ( )
+{
+    this->offset.y = this->getSpeedPoints ( ) * -0.01f ;
+}
+
+/* sets the offset y to +(speedPoints), so that the entity will move down the screen */
+void DynamicEntity::moveDown ( )
+{
+    this->offset.y = this->getSpeedPoints ( ) * 0.01f ;
+}
+
+/* sets the offset x to -(speedPoints), so that the entity will move left on the screen */
+void DynamicEntity::moveLeft ( )
+{
+    this->offset.x = this->getSpeedPoints ( ) * -0.01f ;
+}
+
+/* sets the offset x to +(speedPoints), so that the entity will move right on the screen */
+void DynamicEntity::moveRight ( )
+{
+    this->offset.x = this->getSpeedPoints ( ) * 0.01f ;
+}
+
+/* will call the move method of the classs; the frameTime parameter is
+ multiplied by the offset (measured in pixels) and updates the
+ player position */
+void DynamicEntity::update ( const sf::Time & frameTime )
+{
+    this->offset.x *= frameTime.asMilliseconds ( ) ;
+    this->offset.y *= frameTime.asMilliseconds ( ) ;
+
+    this->move ( this->offset ) ;
+
+    this->offset = sf::Vector2f ( ) ;
+}
