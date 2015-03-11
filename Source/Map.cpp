@@ -15,6 +15,8 @@ Map::Map ( Game & game ) :
     entity.setTexture ( this->game.getTextureManager ( ).get ( "Player" ) ) ;
     entity.setMaximumHealth(1000) ;
     entity.setHealth(750) ;
+    entity.setDetectionDistance(100) ;
+    entity.setSpeedPoints(50);
 
     this->entities.push_back ( std::shared_ptr <Entity> ( new EnemyEntity ( entity ) ) ) ;
 }
@@ -54,6 +56,8 @@ void Map::update ( const sf::Time & frameTime )
             if ( this->chunks.find ( chunkPosition ) == this->chunks.end ( ) )
             {
                 this->chunks [ chunkPosition ] = std::shared_ptr <MapChunk> ( new MapChunk ( *this , sf::Vector2f ( chunkPosition.x * camera.getSize ( ).x , chunkPosition.y * camera.getSize ( ).y ) , camera.getSize () ) ) ;
+
+
             }
         }
     }

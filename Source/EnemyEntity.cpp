@@ -1,14 +1,6 @@
-//
-//  EnemyEntity.cpp
-//  cs2bgame
-//
-//  Created by Brendan Murray on 3/2/15.
-//
-//
-
-#include <iostream>
-
 #include "EnemyEntity.hpp"
+#include "Player.hpp"
+#include "Map.hpp"
 
 EnemyEntity::EnemyEntity ( Map & map ) :
     DynamicEntity ( map ) ,
@@ -46,6 +38,37 @@ void EnemyEntity::update ( const sf::Time & frameTime )
     this->healthBar.setSize ( sf::Vector2f ( this->getLocalBounds ( ).width * 1.5f * this->getHealth ( ) / this->getMaximumHealth ( ) , this->healthBar.getSize ( ).y ) ) ;
     this->healthBar.setOrigin ( this->healthBar.getSize ( ) * 0.5f ) ;
     this->healthBar.setPosition ( this->getPosition ( ).x , this->getPosition ( ).y - this->getLocalBounds ( ).height ) ;
+
+    float dX = this->getPosition ( ).x - this->getMap ( ).getPlayer ( ).getPosition ( ).x ;
+    float dY = this->getPosition ( ).y - this->getMap ( ).getPlayer ( ).getPosition ( ).y ;
+
+    if ( ! this->targetEntity )
+    {
+        const float radiusSum = this->getDetectionDistance ( ) + this->getMap ( ).getPlayer ( ).getRadius ( ) ;
+
+        if ( dX * dX + dY * dY <= radiusSum * radiusSum )
+            this->targetEntity = & this->getMap ( ).getPlayer ( ) ;
+    }
+    else
+    {
+        const float radiusSum = 1.5f * ( this->getRadius ( ) + this->getMap ( ).getPlayer ( ).getRadius ( ) ) ;
+
+        if ( dX * dX + dY * dY <= radiusSum * radiusSum )
+        {
+            dX = 0 ;
+            dY = 0 ;
+        }
+
+        if ( dX > 0 )
+            this->moveLeft ( ) ;
+        else if ( dX < 0 )
+            this->moveRight ( ) ;
+
+        else if ( dY > 0 )
+            this->moveUp ( ) ;
+        else if ( dY < 0 )
+            this->moveDown ( ) ;
+    }
 }
 
 /*  */
@@ -53,4 +76,15 @@ void EnemyEntity::draw ( sf::RenderTarget & target ) const
 {
     DynamicEntity::draw ( target ) ;
     target.draw ( this->healthBar ) ;
+
+    sf::CircleShape circle ;
+
+    circle.setOutlineColor ( sf::Color ( 255 , 0 , 0 , 100 ) ) ;
+    circle.setOutlineThickness(1) ;
+    circle.setFillColor(sf::Color ( 0 , 0 , 0 , 0 ) ) ;
+    circle.setRadius(this->getDetectionDistance());
+    circle.setOrigin(sf::Vector2f (circle.getLocalBounds().width / 2.0f , circle.getLocalBounds().height / 2.0f ));
+    circle.setPosition ( this->getPosition());
+
+    target.draw ( circle ) ;
 }
