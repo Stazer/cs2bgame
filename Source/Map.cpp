@@ -28,6 +28,8 @@ Player & Map::getPlayer ( )
     return this->game.getPlayer ( ) ;
 }
 
+#include <iostream>
+
 void Map::update ( const sf::Time & frameTime )
 {
     const sf::View & camera = this->game.getInterface ( ).getCamera ( ) ;
@@ -44,12 +46,26 @@ void Map::update ( const sf::Time & frameTime )
         {
             if ( this->chunks.find ( chunkPosition ) == this->chunks.end ( ) )
             {
-                sf::Vector2f upperCorner ( chunkPosition.x * camera.getSize ( ).x , chunkPosition.y * camera.getSize ( ).y ) ;
+                sf::Vector2f position ( chunkPosition.x * camera.getSize ( ).x , chunkPosition.y * camera.getSize ( ).y ) ;
 
-                this->chunks [ chunkPosition ] = std::shared_ptr <MapChunk> ( new MapChunk ( *this , upperCorner , camera.getSize ( ) ) ) ;
+                this->chunks [ chunkPosition ] = std::shared_ptr <MapChunk> ( new MapChunk ( *this , position , camera.getSize ( ) ) ) ;
 
+                // spawn only 1
+                int limit = position.x + camera.getSize ( ).x ;
 
-                this->entities.push_back ( std::shared_ptr <Entity> ( this->getGame ( ).getEnemyEntityTemplateManager ( ).createRandomEnemyEntity ( * this , upperCorner ) ) ) ;
+                if ( ! limit )
+                    --limit ;
+
+                position.x = position.x + rand ( ) % limit ;
+
+                limit = position.y + camera.getSize ( ).y ;
+
+                if ( ! limit )
+                    --limit ;
+
+                position.y = position.y + rand ( ) % limit ;
+
+                this->entities.push_back ( std::shared_ptr <Entity> ( this->getGame ( ).getEnemyEntityTemplateManager ( ).createRandomEnemyEntity ( * this , position ) ) ) ;
 
             }
         }
