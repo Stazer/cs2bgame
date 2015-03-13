@@ -108,7 +108,18 @@ void DynamicEntity::update ( const sf::Time & frameTime )
     this->offset = sf::Vector2f ( ) ;
 }
 
-void DynamicEntity::attack ( DynamicEntity & entity )
+void DynamicEntity::attack ( DynamicEntity & entity , bool rangeAttention )
 {
+    if ( rangeAttention )
+    {
+        float dX = this->getPosition ( ).x - entity.getPosition ( ).x ;
+        float dY = this->getPosition ( ).y - entity.getPosition ( ).y ;
+
+        const float radiusSum = this->getRadius ( ) * 1.5f + entity.getRadius ( ) * 1.5f ;
+
+        if ( ! ( dX * dX + dY * dY <= radiusSum * radiusSum ) )
+            return ;
+    }
+
     entity.decreaseHealth ( this->getAttackPoints ( ) ) ;
 }

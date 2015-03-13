@@ -49,7 +49,7 @@ class DynamicEntity : public Entity
         player position */
 		void update ( const sf::Time & frameTime ) ;
 
-		void attack ( DynamicEntity & entity ) ;
+		void attack ( DynamicEntity & entity , bool rangeAttention = true ) ;
 
 	private :
 		unsigned int health = 0 ;
