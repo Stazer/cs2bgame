@@ -27,7 +27,10 @@ unsigned int DynamicEntity::getMaximumHealth ( ) const
 
 void DynamicEntity::setHealth ( unsigned int health )
 {
-    this->health = health;
+    if ( health > this->maximumHealth )
+        this->health = this->maximumHealth ;
+    else
+        this->health = health;
 }
 
 unsigned int DynamicEntity::getHealth ( ) const
@@ -38,14 +41,14 @@ unsigned int DynamicEntity::getHealth ( ) const
 void DynamicEntity::decreaseHealth ( unsigned int health )
 {
     if ( static_cast <unsigned long> ( this->health ) - health < 0 )
-
+        this->health = 0 ;
     else
         this->health -= health;
 }
 
 void DynamicEntity::increaseHealth ( unsigned int health )
 {
-    this->health += health;
+    this->setHealth( this->health += health ) ;
 }
 
 void DynamicEntity::setAttackPoints ( unsigned int attackPoints )
