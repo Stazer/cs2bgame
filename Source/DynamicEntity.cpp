@@ -40,7 +40,7 @@ unsigned int DynamicEntity::getHealth ( ) const
 
 void DynamicEntity::decreaseHealth ( unsigned int health )
 {
-    if ( static_cast <unsigned long> ( this->health ) - health < 0 )
+    if ( ( static_cast <long> ( this->health ) - health ) < 0 )
         this->health = 0 ;
     else
         this->health -= health;
