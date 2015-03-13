@@ -1,12 +1,14 @@
 #include "Game.hpp"
 
-Game::Game ( TextureManager & textureManager, AudioManager & audioManager , const sf::View & defaultView ) :
+Game::Game ( TextureManager & textureManager, AudioManager & audioManager , const sf::View & defaultView  , const std::string & creaturesFileName ) :
 	textureManager ( textureManager ) ,
 	audioManager ( audioManager ) ,
 	map ( * this ) ,
 	player ( this->map ) ,
 	interface ( * this , defaultView )
 {
+    this->enemyEntityTemplateManager.readFile ( creaturesFileName ) ;
+
     this->player.setTexture ( this->textureManager.get ( "Player" ) ) ;
     this->player.setPosition ( defaultView.getCenter ( ) ) ;
     this->player.setSpeedPoints ( 100 ) ;
@@ -55,6 +57,15 @@ const Interface& Game::getInterface ( ) const
 Interface& Game::getInterface ( )
 {
     return this->interface;
+}
+
+EnemyEntityTemplateManager & Game::getEnemyEntityTemplateManager ( )
+{
+    return this->enemyEntityTemplateManager ;
+}
+const EnemyEntityTemplateManager & Game::getEnemyEntityTemplateManager ( ) const
+{
+    return this->enemyEntityTemplateManager ;
 }
 
 /*  */

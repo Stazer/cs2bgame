@@ -52,11 +52,11 @@ class DynamicEntity : public Entity
 		void attack ( DynamicEntity & entity ) ;
 
 	private :
-		unsigned int health ;
-		unsigned int maximumHealth ;
+		unsigned int health = 0 ;
+		unsigned int maximumHealth = 0 ;
 
-		unsigned int attackPoints ;
-		unsigned int speedPoints ;
+		unsigned int attackPoints = 0 ;
+		unsigned int speedPoints = 0 ;
 
 		sf::Vector2f offset ;
 } ;

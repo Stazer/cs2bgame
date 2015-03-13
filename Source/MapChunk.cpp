@@ -2,7 +2,7 @@
 
 MapChunk::MapChunk ( Map & map , const sf::Vector2f & position , const sf::Vector2f & size )
 {
-    sf::Vector2f firstAreaSize ( rand ( ) % static_cast <int> ( size.x ) , rand ( ) % static_cast <int> ( size.y ) ) ;
+    sf::Vector2f firstAreaSize ( std::rand ( ) % static_cast <int> ( size.x ) , std::rand ( ) % static_cast <int> ( size.y ) ) ;
 
     sf::Vector2f tempSize = firstAreaSize ;
     sf::Vector2f tempPosition = position ;

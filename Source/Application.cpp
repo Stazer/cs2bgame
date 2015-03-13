@@ -6,6 +6,8 @@
 
 int Application::main ( const std::vector <std::string> & arguments )
 {
+    srand ( time ( nullptr ) ) ;
+
     sf::Clock frameClock ;
     sf::Time frameTime ;
 
@@ -19,8 +21,10 @@ int Application::main ( const std::vector <std::string> & arguments )
 	textureManager.add ( "Data/Sand.png" ) ;
 	textureManager.add ( "Data/Snow.png" ) ;
 	textureManager.add ( "Data/Player.png" ) ;
+	textureManager.add ( "Data/Creature1.png" ) ;
+	textureManager.add ( "Data/Creature2.png" ) ;
 
-	Game gameState ( textureManager , audioManager , window.getView ( ) ) ;
+	Game game ( textureManager , audioManager , window.getView ( ) , "Data/Creatures" ) ;
 
     while ( window.isOpen ( ) )
     {
@@ -34,13 +38,13 @@ int Application::main ( const std::vector <std::string> & arguments )
                  ( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape ) )
                 window.close ( ) ;
 
-        	gameState.handle ( event ) ;
+        	game.handle ( event ) ;
         }
 
-       	gameState.update ( frameTime ) ;
+       	game.update ( frameTime ) ;
 
         window.clear ( ) ;
-        gameState.draw ( window ) ;
+        game.draw ( window ) ;
         window.display ( ) ;
     }
 

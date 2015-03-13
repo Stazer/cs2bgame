@@ -30,17 +30,17 @@ MapArea::MapArea ( Map & map , MapArea::TileType type , const sf::Vector2f & pos
 
             sprite.setPosition ( sf::Vector2f ( x , y ) ) ;
 
-            const float tempX = x + texture->getSize().x ;
-            const float tempY = y + texture->getSize().y;
+            const float tempX = x + texture->getSize ( ).x ;
+            const float tempY = y + texture->getSize ( ).y;
 
-            sf::Vector2i newSize (texture->getSize ( ).x , texture->getSize().y);
+            sf::Vector2i newSize ( texture->getSize ( ).x , texture->getSize ( ).y ) ;
 
-            if (tempX > maxPositionX)
+            if ( tempX > maxPositionX )
                 newSize.x -= tempX - maxPositionX ;
-            if (tempY > maxPositionY)
+            if ( tempY > maxPositionY )
                 newSize.y -= tempY - maxPositionY ;
 
-            sprite.setTextureRect(sf::IntRect (sf::Vector2i (),newSize));
+            sprite.setTextureRect ( sf::IntRect ( sf::Vector2i ( ), newSize ) ) ;
 
             this->tiles.push_back ( sprite ) ;
         }
@@ -69,5 +69,5 @@ void MapArea::draw ( sf::RenderTarget & target ) const
 
 MapArea::TileType MapArea::getRandomType ( )
 {
-    return static_cast <MapArea::TileType> ( rand ( ) % MapArea::MAX );
+    return static_cast <MapArea::TileType> ( std::rand ( ) % MapArea::MAX );
 }

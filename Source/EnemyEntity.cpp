@@ -51,13 +51,15 @@ void EnemyEntity::update ( const sf::Time & frameTime )
     }
     else
     {
-        const float radiusSum = 1.5f * ( this->getRadius ( ) + this->getMap ( ).getPlayer ( ).getRadius ( ) ) ;
+        /*const float radiusSum = 1.5f * ( this->getRadius ( ) + this->getMap ( ).getPlayer ( ).getRadius ( ) ) ;
 
         if ( dX * dX + dY * dY <= radiusSum * radiusSum )
         {
             dX = 0 ;
             dY = 0 ;
         }
+
+
 
         if ( dX > 0 )
             this->moveLeft ( ) ;
@@ -67,7 +69,7 @@ void EnemyEntity::update ( const sf::Time & frameTime )
         else if ( dY > 0 )
             this->moveUp ( ) ;
         else if ( dY < 0 )
-            this->moveDown ( ) ;
+            this->moveDown ( ) ;*/
     }
 }
 
@@ -80,7 +82,7 @@ void EnemyEntity::draw ( sf::RenderTarget & target ) const
     sf::CircleShape circle ;
 
     circle.setOutlineColor ( sf::Color ( 255 , 0 , 0 , 100 ) ) ;
-    circle.setOutlineThickness(1) ;
+    circle.setOutlineThickness ( 1 ) ;
     circle.setFillColor(sf::Color ( 0 , 0 , 0 , 0 ) ) ;
     circle.setRadius(this->getDetectionDistance());
     circle.setOrigin(sf::Vector2f (circle.getLocalBounds().width / 2.0f , circle.getLocalBounds().height / 2.0f ));

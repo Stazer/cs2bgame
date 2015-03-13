@@ -1,21 +1,19 @@
-//
-//  DynamicEntity.cpp
-//  cs2bgame
-//
-//  Created by Brendan Murray on 3/2/15.
-//
-//
-
-/*<<<<<<< HEAD*/
 #include "DynamicEntity.hpp"
 
-DynamicEntity::DynamicEntity ( Map & map ) : Entity(map) { }
-
+DynamicEntity::DynamicEntity ( Map & map ) :
+    Entity ( map )
+{
+}
 DynamicEntity::DynamicEntity ( Map & map , const sf::Vector2f & position ,
-                              const sf::Texture & texture , unsigned int healthPoints ,
-                              unsigned int maximumHealth, unsigned int attackPoints, unsigned int speedPoints) :
-                              Entity(map), health(healthPoints), maximumHealth(maximumHealth),
-                              attackPoints(attackPoints), speedPoints(speedPoints) { }
+                               const sf::Texture & texture , unsigned int healthPoints ,
+                               unsigned int maximumHealth, unsigned int attackPoints, unsigned int speedPoints ) :
+    Entity ( map , position , texture ) ,
+    health ( healthPoints ) ,
+    maximumHealth ( maximumHealth ) ,
+    attackPoints ( attackPoints ) ,
+    speedPoints ( speedPoints )
+{
+}
 
 
 void DynamicEntity::setMaximumHealth ( unsigned int maximumHealth )

@@ -2,6 +2,7 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
+#include "EnemyEntityTemplateManager.hpp"
 #include "Map.hpp"
 #include "ResourceManager.hpp"
 #include "Interface.hpp"
@@ -12,7 +13,7 @@ class AudioManager;
 class Game
 {
 	public :
-        Game ( TextureManager & textureManager , AudioManager & audioManager , const sf::View & defaultView ) ;
+        Game ( TextureManager & textureManager , AudioManager & audioManager , const sf::View & defaultView , const std::string & creaturesFileName ) ;
 
         const TextureManager & getTextureManager ( ) const ;
         TextureManager & getTextureManager ( ) ;
@@ -29,6 +30,9 @@ class Game
         const Interface & getInterface ( ) const ;
         Interface & getInterface ( ) ;
 
+        EnemyEntityTemplateManager & getEnemyEntityTemplateManager ( ) ;
+        const EnemyEntityTemplateManager & getEnemyEntityTemplateManager ( ) const ;
+
         /*  */
         void handle ( const sf::Event & event ) ;
         /*  */
@@ -37,8 +41,10 @@ class Game
         void draw ( sf::RenderTarget & target ) ;
 
     private :
-        TextureManager & textureManager;
-        AudioManager & audioManager;
+        TextureManager & textureManager ;
+        AudioManager & audioManager ;
+
+        EnemyEntityTemplateManager enemyEntityTemplateManager ;
 
         Player player ;
         Map map ;

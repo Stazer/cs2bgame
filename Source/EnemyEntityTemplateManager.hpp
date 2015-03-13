@@ -4,6 +4,7 @@
 #include <vector>
 #include "EnemyEntityTemplate.hpp"
 
+class Map ;
 /*  */
 class EnemyEntityTemplateManager
 {
@@ -12,8 +13,8 @@ class EnemyEntityTemplateManager
 		void readFile ( const std::string & fileName ) ;
 
       /*  */
-		EnemyEntity * CreateRandomEnemyEntity ( const sf::Vector2f & position, float rotation ) const ;
-	
+		EnemyEntity * createRandomEnemyEntity ( Map & map , const sf::Vector2f & position ) const ;
+
 	private :
 		std::vector <EnemyEntityTemplate> enemyEntityTemplates ;
 } ;
