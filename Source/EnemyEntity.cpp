@@ -6,10 +6,6 @@ EnemyEntity::EnemyEntity ( Map & map ) :
     DynamicEntity ( map ) ,
     detectionDistance ( 0 )
 {
-    this->healthBar.setFillColor ( sf::Color::Red ) ;
-    this->healthBar.setOutlineColor ( sf::Color::Black ) ;
-    this->healthBar.setOutlineThickness ( 1 ) ;
-    this->healthBar.setSize ( sf::Vector2f ( 100 , 5 ) ) ;
 }
 
 EnemyEntity::EnemyEntity ( Map & map , const sf::Vector2f & position , const sf::Texture & texture ,
@@ -35,10 +31,16 @@ float EnemyEntity::getDetectionDistance ( ) const
 void EnemyEntity::update ( const sf::Time & frameTime )
 {
     DynamicEntity::update ( frameTime ) ;
-    this->healthBar.setSize ( sf::Vector2f ( this->getLocalBounds ( ).width * 1.5f * this->getHealth ( ) / this->getMaximumHealth ( ) , this->healthBar.getSize ( ).y ) ) ;
+
+    // update healthbar
+    this->healthBar.setFillColor ( sf::Color::Red ) ;
+    this->healthBar.setOutlineColor ( sf::Color::Black ) ;
+    this->healthBar.setOutlineThickness ( 1 ) ;
+    this->healthBar.setSize ( sf::Vector2f ( this->getLocalBounds ( ).width * 1.5f * this->getHealth ( ) / this->getMaximumHealth ( ) , 5 ) ) ;
     this->healthBar.setOrigin ( this->healthBar.getSize ( ) * 0.5f ) ;
     this->healthBar.setPosition ( this->getPosition ( ).x , this->getPosition ( ).y - this->getLocalBounds ( ).height ) ;
 
+    //
     float dX = this->getPosition ( ).x - this->getMap ( ).getPlayer ( ).getPosition ( ).x ;
     float dY = this->getPosition ( ).y - this->getMap ( ).getPlayer ( ).getPosition ( ).y ;
 

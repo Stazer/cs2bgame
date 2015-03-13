@@ -18,36 +18,39 @@ DynamicEntity::DynamicEntity ( Map & map , const sf::Vector2f & position ,
 
 void DynamicEntity::setMaximumHealth ( unsigned int maximumHealth )
 {
-   this->maximumHealth = maximumHealth;
+    this->maximumHealth = maximumHealth;
 }
 unsigned int DynamicEntity::getMaximumHealth ( ) const
 {
-   return this->maximumHealth;
+    return this->maximumHealth;
 }
 
 void DynamicEntity::setHealth ( unsigned int health )
 {
-   this->health = health;
+    this->health = health;
 }
 
 unsigned int DynamicEntity::getHealth ( ) const
 {
-   return this->health;
+    return this->health;
 }
 
 void DynamicEntity::decreaseHealth ( unsigned int health )
 {
-   this->health -= health;
+    if ( static_cast <unsigned long> ( this->health ) - health < 0 )
+
+    else
+        this->health -= health;
 }
 
 void DynamicEntity::increaseHealth ( unsigned int health )
 {
-   this->health += health;
+    this->health += health;
 }
 
 void DynamicEntity::setAttackPoints ( unsigned int attackPoints )
 {
-   this->attackPoints = attackPoints;
+    this->attackPoints = attackPoints;
 }
 
 unsigned int DynamicEntity::getAttackPoints ( ) const
