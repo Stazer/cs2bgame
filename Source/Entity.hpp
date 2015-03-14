@@ -38,6 +38,8 @@ class Entity
 
         float getRadius ( ) const ;
 
+        bool inRange ( const Entity & entity ) const ;
+
 		virtual void update ( const sf::Time & frameTime ) = 0 ;
 
         /* the draw method of the target is called and sprite is one of its arguments

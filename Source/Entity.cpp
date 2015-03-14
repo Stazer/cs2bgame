@@ -59,6 +59,16 @@ float Entity::getRadius ( ) const
     return ( this->sprite.getLocalBounds ( ).width + this->sprite.getLocalBounds ( ).height ) / 4.0f ;
 }
 
+bool Entity::inRange ( const Entity & entity ) const
+{
+    const float dX = this->getPosition ( ).x - entity.getPosition ( ).x ;
+    const float dY = this->getPosition ( ).y - entity.getPosition ( ).y ;
+
+    const float radiusSum = this->getRadius ( ) * 2.0f + entity.getRadius ( ) * 2.0f ;
+
+    return ( dX * dX + dY * dY <= radiusSum * radiusSum ) ;
+}
+
 /* the draw method of the target is called and sprite is one of its arguments
  renderTexture.draw(sprite); // or any other drawable */
 void Entity::draw ( sf::RenderTarget & target ) const

@@ -24,7 +24,7 @@ int Application::main ( const std::vector <std::string> & arguments )
 	textureManager.add ( "Data/Creature1.png" ) ;
 	textureManager.add ( "Data/Creature2.png" ) ;
 
-	Game game ( textureManager , audioManager , window.getView ( ) , "Data/Creatures" ) ;
+	Game game ( textureManager , audioManager , window , "Data/Creatures" ) ;
 
     while ( window.isOpen ( ) )
     {

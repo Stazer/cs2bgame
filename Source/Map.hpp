@@ -50,6 +50,9 @@ class Map
 		const Player & getPlayer ( ) const ;
 		Player & getPlayer ( ) ;
 
+        std::vector <std::shared_ptr <Entity>> & getEntities ( ) ;
+        const std::vector <std::shared_ptr <Entity>> & getEntities ( ) const ;
+
         /* Justus and Brendan will implement */
 		void update ( const sf::Time & frameTime ) ;
 
@@ -64,5 +67,5 @@ class Map
 
         /* vector stores entity sprites, player entity, enemy entity, and static
         entities like tress, rocks, and lava */
-        std::vector <std::shared_ptr <Entity> > entities ;
+        std::vector <std::shared_ptr <Entity>> entities ;
 } ;

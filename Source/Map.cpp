@@ -28,7 +28,14 @@ Player & Map::getPlayer ( )
     return this->game.getPlayer ( ) ;
 }
 
-#include <iostream>
+std::vector <std::shared_ptr <Entity>> & Map::getEntities ( )
+{
+    return this->entities ;
+}
+const std::vector <std::shared_ptr <Entity>> & Map::getEntities ( ) const
+{
+    return this->entities ;
+}
 
 void Map::update ( const sf::Time & frameTime )
 {

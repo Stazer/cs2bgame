@@ -95,6 +95,15 @@ void DynamicEntity::moveRight ( )
     this->offset.x = this->getSpeedPoints ( ) * 0.01f ;
 }
 
+bool DynamicEntity::isDead ( ) const
+{
+    return ( this->getHealth ( ) == 0 ) ;
+}
+bool DynamicEntity::isAlive ( ) const
+{
+    return ! this->isDead ( ) ;
+}
+
 /* will call the move method of the classs; the frameTime parameter is
  multiplied by the offset (measured in pixels) and updates the
  player position */
@@ -108,18 +117,7 @@ void DynamicEntity::update ( const sf::Time & frameTime )
     this->offset = sf::Vector2f ( ) ;
 }
 
-void DynamicEntity::attack ( DynamicEntity & entity , bool rangeAttention )
+void DynamicEntity::attack ( DynamicEntity & entity )
 {
-    if ( rangeAttention )
-    {
-        float dX = this->getPosition ( ).x - entity.getPosition ( ).x ;
-        float dY = this->getPosition ( ).y - entity.getPosition ( ).y ;
-
-        const float radiusSum = this->getRadius ( ) * 1.5f + entity.getRadius ( ) * 1.5f ;
-
-        if ( ! ( dX * dX + dY * dY <= radiusSum * radiusSum ) )
-            return ;
-    }
-
     entity.decreaseHealth ( this->getAttackPoints ( ) ) ;
 }

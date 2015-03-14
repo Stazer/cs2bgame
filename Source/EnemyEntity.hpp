@@ -26,6 +26,8 @@ class EnemyEntity : public DynamicEntity
 		virtual void draw ( sf::RenderTarget & target ) const ;
 
 	private :
+        sf::Clock attackTimer ;
+
 		float detectionDistance = 0 ;
 
         /* this member will always be set to the player entity because we want the enemies

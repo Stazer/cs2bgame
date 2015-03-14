@@ -11,9 +11,10 @@ class Game ;
 class Interface
 {
     public :
-        Interface ( Game & game , const sf::View & defaultView ) ;
+        Interface ( Game & game , const sf::RenderTarget & target ) ;
 
-        const sf::View& getCamera ( ) const ;
+        const sf::View & getCamera ( ) const ;
+        const sf::RenderTarget & getTarget ( ) const ;
 
         /*  */
         void handle ( const sf::Event & event ) ;
@@ -27,5 +28,5 @@ class Interface
 
         sf::RectangleShape healthBar ;
 
-        sf::View camera ;
+        const sf::RenderTarget & target ;
 } ;

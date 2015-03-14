@@ -53,25 +53,26 @@ void EnemyEntity::update ( const sf::Time & frameTime )
     }
     else
     {
-        /*const float radiusSum = 1.5f * ( this->getRadius ( ) + this->getMap ( ).getPlayer ( ).getRadius ( ) ) ;
-
-        if ( dX * dX + dY * dY <= radiusSum * radiusSum )
+        if ( ! this->inRange ( * this->targetEntity ) )
         {
-            dX = 0 ;
-            dY = 0 ;
+            dX = static_cast <int> ( dX ) ;
+            dY = static_cast <int> ( dY ) ;
+
+            if ( dX > 0 )
+                this->moveLeft ( ) ;
+            if ( dX < 0 )
+                this->moveRight ( ) ;
+
+            if ( dY > 0 )
+                this->moveUp ( ) ;
+            if ( dY < 0 )
+                this->moveDown ( ) ;
         }
-
-
-
-        if ( dX > 0 )
-            this->moveLeft ( ) ;
-        else if ( dX < 0 )
-            this->moveRight ( ) ;
-
-        else if ( dY > 0 )
-            this->moveUp ( ) ;
-        else if ( dY < 0 )
-            this->moveDown ( ) ;*/
+        else if ( this->attackTimer.getElapsedTime ( ).asSeconds ( ) >= 1.0f )
+        {
+            this->attackTimer.restart ( ) ;
+            this->attack ( * this->targetEntity ) ;
+        }
     }
 }
 

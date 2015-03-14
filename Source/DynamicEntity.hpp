@@ -44,12 +44,15 @@ class DynamicEntity : public Entity
         /* sets the offset x to +(speedPoints), so that the entity will move right on the screen */
 		void moveRight ( ) ;
 
+		bool isDead ( ) const ;
+		bool isAlive ( ) const ;
+
         /* will call the move method of the classs; the frameTime parameter is
         multiplied by the offset (measured in pixels) and updates the
         player position */
 		void update ( const sf::Time & frameTime ) ;
 
-		void attack ( DynamicEntity & entity , bool rangeAttention = true ) ;
+        void attack ( DynamicEntity & entity ) ;
 
 	private :
 		unsigned int health = 0 ;

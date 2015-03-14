@@ -13,7 +13,7 @@ class AudioManager;
 class Game
 {
 	public :
-        Game ( TextureManager & textureManager , AudioManager & audioManager , const sf::View & defaultView , const std::string & creaturesFileName ) ;
+        Game ( TextureManager & textureManager , AudioManager & audioManager , const sf::RenderTarget & target , const std::string & creaturesFileName ) ;
 
         const TextureManager & getTextureManager ( ) const ;
         TextureManager & getTextureManager ( ) ;
