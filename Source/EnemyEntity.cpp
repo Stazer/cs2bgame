@@ -30,6 +30,9 @@ float EnemyEntity::getDetectionDistance ( ) const
 /*  */
 void EnemyEntity::update ( const sf::Time & frameTime )
 {
+    if ( this->isDead ( ) )
+        return ;
+
     DynamicEntity::update ( frameTime ) ;
 
     // update healthbar
@@ -80,7 +83,9 @@ void EnemyEntity::update ( const sf::Time & frameTime )
 void EnemyEntity::draw ( sf::RenderTarget & target ) const
 {
     DynamicEntity::draw ( target ) ;
-    target.draw ( this->healthBar ) ;
+
+    if ( this->isAlive ( ) )
+        target.draw ( this->healthBar ) ;
 
     sf::CircleShape circle ;
 
