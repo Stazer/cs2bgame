@@ -55,6 +55,9 @@ class DynamicEntity : public Entity
         void attack ( DynamicEntity & entity ) ;
 
 	private :
+        sf::Clock animationTimer ;
+        unsigned int animationStep = 0 ;
+
 		unsigned int health = 0 ;
 		unsigned int maximumHealth = 0 ;
 

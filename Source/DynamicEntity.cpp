@@ -43,7 +43,7 @@ void DynamicEntity::decreaseHealth ( unsigned int health )
     if ( ( static_cast <long> ( this->health ) - health ) < 0 )
         this->health = 0 ;
     else
-        this->health -= health;
+        this->health -= health ;
 }
 
 void DynamicEntity::increaseHealth ( unsigned int health )
@@ -74,25 +74,25 @@ unsigned int DynamicEntity::getSpeedPoints ( ) const
 /* sets the offset y to -(speedPoints), so that the entity will move up the screen */
 void DynamicEntity::moveUp ( )
 {
-    this->offset.y = this->getSpeedPoints ( ) * -0.01f ;
+    this->offset.y = - 1 ;
 }
 
 /* sets the offset y to +(speedPoints), so that the entity will move down the screen */
 void DynamicEntity::moveDown ( )
 {
-    this->offset.y = this->getSpeedPoints ( ) * 0.01f ;
+    this->offset.y = 1 ;
 }
 
 /* sets the offset x to -(speedPoints), so that the entity will move left on the screen */
 void DynamicEntity::moveLeft ( )
 {
-    this->offset.x = this->getSpeedPoints ( ) * -0.01f ;
+    this->offset.x = - 1 ;
 }
 
 /* sets the offset x to +(speedPoints), so that the entity will move right on the screen */
 void DynamicEntity::moveRight ( )
 {
-    this->offset.x = this->getSpeedPoints ( ) * 0.01f ;
+    this->offset.x = 1 ;
 }
 
 bool DynamicEntity::isDead ( ) const
@@ -109,8 +109,53 @@ bool DynamicEntity::isAlive ( ) const
  player position */
 void DynamicEntity::update ( const sf::Time & frameTime )
 {
-    this->offset.x *= frameTime.asMilliseconds ( ) ;
-    this->offset.y *= frameTime.asMilliseconds ( ) ;
+    if ( ! this->animationStep )
+    {
+        const sf::Texture * const texture = this->getTexture ( ) ;
+
+        if ( texture  )
+        {
+            this->setTextureRect ( sf::IntRect ( texture->getSize ( ).x / 2.0f , 0 , texture->getSize ( ).x / 2.0f , texture->getSize ( ).y )  ) ;
+        }
+
+        ++this->animationStep ;
+    }
+
+    if ( this->offset.x == -1 )
+        if ( this->offset.y == 1 )
+            this->sprite.setRotation ( 135 ) ;
+        else if ( this->offset.y == -1 )
+            this->sprite.setRotation ( -135 ) ;
+        else
+            this->sprite.setRotation ( 180 ) ;//
+    else if ( this->offset.x == 1 )
+        if ( this->offset.y == 1 )
+            this->sprite.setRotation ( 45 ) ;
+        else if ( this->offset.y == -1 )
+            this->sprite.setRotation ( -45 ) ;
+        else
+            this->sprite.setRotation ( 0 ) ;
+    else if ( this->offset.y == 1 )
+            this->sprite.setRotation ( 90 ) ;
+    else if ( this->offset.y == -1 )
+            this->sprite.setRotation ( -90 ) ;
+
+    this->offset.x *= frameTime.asSeconds ( ) * this->getSpeedPoints ( ) ;
+    this->offset.y *= frameTime.asSeconds ( ) * this->getSpeedPoints ( )  ;
+
+    const sf::Texture * const texture = this->getTexture ( ) ;
+
+    if ( texture && ( offset.x || offset.y ) )
+    {
+        if ( this->animationTimer.getElapsedTime ( ).asSeconds ( )  * this->getSpeedPoints ( ) * 0.001f > frameTime.asSeconds ( ) )
+        {
+            this->setTextureRect ( sf::IntRect ( ( this->animationStep - 1 ) * texture->getSize ( ).x / 2.0f , 0 , texture->getSize ( ).x / 2.0f , texture->getSize ( ).y )  ) ;
+
+            this->animationStep = ( this->animationStep == 1 ) ? 2 : 1 ;
+
+            this->animationTimer.restart ( ) ;
+        }
+    }
 
     this->move ( this->offset ) ;
 

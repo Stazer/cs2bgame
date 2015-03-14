@@ -25,6 +25,9 @@ class Entity
 		void setTexture ( const sf::Texture & texture ) ;
 		const sf::Texture * const getTexture ( ) const ;
 
+		void setTextureRect ( const sf::IntRect & rectangle ) ;
+        const sf::IntRect & getTextureRect ( ) const ;
+
 		void setPosition ( const sf::Vector2f & position ) ;
 		const sf::Vector2f & getPosition ( ) const ;
 
@@ -46,7 +49,7 @@ class Entity
         renderTexture.draw(sprite); // or any other drawable */
 		virtual void draw ( sf::RenderTarget & target ) const ;
 
-	private :
+	protected :
 		Map & map ;
 		sf::Sprite sprite ;
 } ;

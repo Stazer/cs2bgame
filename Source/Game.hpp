@@ -33,6 +33,9 @@ class Game
         EnemyEntityTemplateManager & getEnemyEntityTemplateManager ( ) ;
         const EnemyEntityTemplateManager & getEnemyEntityTemplateManager ( ) const ;
 
+        void setKills ( unsigned int kills ) ;
+        unsigned int getKills ( ) const ;
+
         /*  */
         void handle ( const sf::Event & event ) ;
         /*  */
@@ -43,6 +46,8 @@ class Game
     private :
         TextureManager & textureManager ;
         AudioManager & audioManager ;
+
+        unsigned int kills = 0 ;
 
         EnemyEntityTemplateManager enemyEntityTemplateManager ;
 

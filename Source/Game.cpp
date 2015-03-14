@@ -14,7 +14,7 @@ Game::Game ( TextureManager & textureManager, AudioManager & audioManager , cons
 
     this->player.setTexture ( this->textureManager.get ( "Player" ) ) ;
     this->player.setPosition ( target.getView ( ).getCenter ( ) ) ;
-    this->player.setSpeedPoints ( 100 ) ;
+    this->player.setSpeedPoints ( 1000 ) ;
     this->player.setAttackPoints ( 100 ) ;
 
 }

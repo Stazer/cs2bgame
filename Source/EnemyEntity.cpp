@@ -75,6 +75,9 @@ void EnemyEntity::update ( const sf::Time & frameTime )
         {
             this->attackTimer.restart ( ) ;
             this->attack ( * this->targetEntity ) ;
+
+            if ( this->targetEntity->isDead ( ) )
+                this->targetEntity = nullptr ;
         }
     }
 }

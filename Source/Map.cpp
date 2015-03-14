@@ -78,6 +78,19 @@ void Map::update ( const sf::Time & frameTime )
         }
     }
 
+    if ( this->entityTimer.getElapsedTime ( ).asSeconds ( ) >= 1.0f )
+    {
+        for ( auto iterator = this->entities.begin ( ) ; iterator != this->entities.end ( ) ; ++iterator )
+        {
+            EnemyEntity * enemy = dynamic_cast <EnemyEntity *> ( iterator->get ( ) ) ;
+
+            if ( enemy && enemy->isDead ( ) )
+            {
+                iterator = this->entities.erase ( iterator ) ;
+            }
+        }
+    }
+
 	for ( auto & entity : this->entities )
 		entity->update ( frameTime ) ;
 }

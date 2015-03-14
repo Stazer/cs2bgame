@@ -1,7 +1,9 @@
 #include "Entity.hpp"
 
-Entity::Entity ( Map & map ) : map(map){ }
-
+Entity::Entity ( Map & map ) :
+    map ( map )
+{
+}
 
 Entity::Entity ( Map & map , const sf::Vector2f & position , const sf::Texture & texture ) :
     map ( map )
@@ -13,12 +15,21 @@ Entity::Entity ( Map & map , const sf::Vector2f & position , const sf::Texture &
 void Entity::setTexture ( const sf::Texture & texture )
 {
    this->sprite.setTexture ( texture ) ;
-   this->sprite.setOrigin ( texture.getSize ( ).x / 2.0f , texture.getSize ( ).y / 2.0f ) ;
+   this->sprite.setOrigin ( sf::Vector2f ( this->getLocalBounds ( ).width / 2.0f , this->getLocalBounds ( ).height / 2.0f ) ) ;
 }
-
 const sf::Texture * const Entity::getTexture ( ) const
 {
    return this->sprite.getTexture ( ) ;
+}
+
+void Entity::setTextureRect ( const sf::IntRect & rectangle )
+{
+    this->sprite.setTextureRect ( rectangle ) ;
+    this->sprite.setOrigin ( sf::Vector2f ( this->getLocalBounds ( ).width / 2.0f , this->getLocalBounds ( ).height / 2.0f ) ) ;
+}
+const sf::IntRect & Entity::getTextureRect ( ) const
+{
+    return this->sprite.getTextureRect ( ) ;
 }
 
 void Entity::setPosition ( const sf::Vector2f & position )

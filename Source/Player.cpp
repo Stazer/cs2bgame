@@ -11,3 +11,15 @@ Player::Player ( Map & map , const sf::Vector2f & position , const sf::Texture &
     DynamicEntity ( map , position , texture , healthPoints , maximumHealth , attackPoints , speedPoints )
 {
 }
+
+void Player::update ( const sf::Time & frameTime )
+{
+    if ( this->healthTimer.getElapsedTime ( ).asSeconds ( ) >= 1.0f )
+    {
+        this->increaseHealth ( 5 ) ;
+
+        this->healthTimer.restart ( ) ;
+    }
+
+    DynamicEntity::update ( frameTime ) ;
+}
