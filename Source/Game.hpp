@@ -13,13 +13,16 @@ class AudioManager;
 class Game
 {
 	public :
-        Game ( TextureManager & textureManager , AudioManager & audioManager , const sf::RenderTarget & target , const std::string & creaturesFileName ) ;
+        Game ( TextureManager & textureManager , AudioManager & audioManager , FontManager & fontManager , sf::RenderWindow & target ) ;
 
         const TextureManager & getTextureManager ( ) const ;
         TextureManager & getTextureManager ( ) ;
 
         const AudioManager & getAudioManager ( ) const ;
         AudioManager & getAudioManager ( ) ;
+
+        const FontManager & getFontManager ( ) const ;
+        FontManager & getFontManager ( ) ;
 
         const Map & getMap ( ) const ;
         Map & getMap ( ) ;
@@ -35,6 +38,9 @@ class Game
 
         void setKills ( unsigned int kills ) ;
         unsigned int getKills ( ) const ;
+        void addKill ( ) ;
+
+        const sf::Clock & getTimer ( ) const ;
 
         /*  */
         void handle ( const sf::Event & event ) ;
@@ -44,10 +50,19 @@ class Game
         void draw ( sf::RenderTarget & target ) ;
 
     private :
+        void play ( ) ;
+        void stop ( ) ;
+
         TextureManager & textureManager ;
         AudioManager & audioManager ;
+        FontManager & fontManager ;
+
+        sf::Sprite instructions ;
+
+        bool isPlaying = false ;
 
         unsigned int kills = 0 ;
+        sf::Clock timer ;
 
         EnemyEntityTemplateManager enemyEntityTemplateManager ;
 

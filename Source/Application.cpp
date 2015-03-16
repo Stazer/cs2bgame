@@ -15,6 +15,9 @@ int Application::main ( const std::vector <std::string> & arguments )
 
     AudioManager audioManager ;
 	TextureManager textureManager ;
+	FontManager fontManager ;
+
+    audioManager.getSoundBufferManager ( ).add ( "Data/Hit.ogg" ) ;
 
 	textureManager.add ( "Data/Dirt.png" ) ;
 	textureManager.add ( "Data/Grass.png" ) ;
@@ -23,8 +26,11 @@ int Application::main ( const std::vector <std::string> & arguments )
 	textureManager.add ( "Data/Player.png" ) ;
 	textureManager.add ( "Data/Mech.png" ) ;
 	textureManager.add ( "Data/BigMech.png" ) ;
+	textureManager.add ( "Data/Instructions.png" ) ;
 
-	Game game ( textureManager , audioManager , window , "Data/Creatures" ) ;
+	fontManager.add ( "Data/Arial.ttf" ) ;
+
+	Game game ( textureManager , audioManager , fontManager , window ) ;
 
     while ( window.isOpen ( ) )
     {
@@ -34,8 +40,7 @@ int Application::main ( const std::vector <std::string> & arguments )
         while ( window.pollEvent ( event ) )
         {
 
-            if ( ( event.type == sf::Event::Closed ) ||
-                 ( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape ) )
+            if ( event.type == sf::Event::Closed )
                 window.close ( ) ;
 
         	game.handle ( event ) ;

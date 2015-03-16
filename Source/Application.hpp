@@ -12,6 +12,7 @@ class Application
       int main ( const std::vector <std::string> & arguments ) ;
 
    private :
-      AudioManager audioManager;
-      TextureManager textureManager;
+      AudioManager audioManager ;
+      TextureManager textureManager ;
+      FontManager fontManager ;
 } ;

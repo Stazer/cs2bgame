@@ -50,6 +50,8 @@ class Map
 		const Player & getPlayer ( ) const ;
 		Player & getPlayer ( ) ;
 
+		void clear ( ) ;
+
         std::vector <std::shared_ptr <Entity>> & getEntities ( ) ;
         const std::vector <std::shared_ptr <Entity>> & getEntities ( ) const ;
 

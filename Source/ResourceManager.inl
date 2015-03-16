@@ -46,17 +46,22 @@ bool ResourceManager <Type>::exists ( const std::string & name ) const
 }
 
 template <typename Type>
-bool ResourceManager <Type>::loadResource ( sf::Texture & Resource , const std::string & file )
+bool ResourceManager <Type>::loadResource ( sf::Texture & resource , const std::string & file ) const
 {
-    return Resource.loadFromFile ( file ) ;
+    return resource.loadFromFile ( file ) ;
 }
 template <typename Type>
-bool ResourceManager <Type>::loadResource ( sf::SoundBuffer & Resource , const std::string & file )
+bool ResourceManager <Type>::loadResource ( sf::SoundBuffer & resource , const std::string & file ) const
 {
-    return Resource.loadFromFile ( file ) ;
+    return resource.loadFromFile ( file ) ;
 }
 template <typename Type>
-bool ResourceManager <Type>::loadResource ( sf::Music & Resource , const std::string & file )
+bool ResourceManager <Type>::loadResource ( sf::Music & resource , const std::string & file ) const
 {
-    return Resource.openFromFile ( file ) ;
+    return resource.openFromFile ( file ) ;
+}
+template <typename Type>
+bool ResourceManager <Type>::loadResource ( sf::Font & resource , const std::string & file ) const
+{
+    return resource.loadFromFile ( file ) ;
 }

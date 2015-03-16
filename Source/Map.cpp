@@ -28,6 +28,11 @@ Player & Map::getPlayer ( )
     return this->game.getPlayer ( ) ;
 }
 
+void Map::clear ( )
+{
+    this->entities.clear ( ) ;
+}
+
 std::vector <std::shared_ptr <Entity>> & Map::getEntities ( )
 {
     return this->entities ;

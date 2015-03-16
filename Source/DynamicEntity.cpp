@@ -1,4 +1,6 @@
 #include "DynamicEntity.hpp"
+#include "Game.hpp"
+#include "AudioManager.hpp"
 
 DynamicEntity::DynamicEntity ( Map & map ) :
     Entity ( map )
@@ -165,4 +167,6 @@ void DynamicEntity::update ( const sf::Time & frameTime )
 void DynamicEntity::attack ( DynamicEntity & entity )
 {
     entity.decreaseHealth ( this->getAttackPoints ( ) ) ;
+
+    this->getMap ( ).getGame ( ).getAudioManager ( ).getSound ( "Hit" ).play ( ) ;
 }

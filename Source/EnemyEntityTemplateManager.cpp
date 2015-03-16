@@ -4,6 +4,8 @@
 
 void EnemyEntityTemplateManager::readFile ( const std::string & fileName )
 {
+    this->enemyEntityTemplates.clear ( ) ;
+
     std::ifstream file ( fileName.c_str ( ) ) ;
 
     if ( ! file.is_open ( ) )
