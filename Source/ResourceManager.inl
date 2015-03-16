@@ -31,12 +31,22 @@ void ResourceManager <Type>::remove ( const std::string & name )
 template <typename Type>
 Type & ResourceManager <Type>::get ( const std::string & name )
 {
-    return * this->resources [ name ] ;
+    auto iterator = this->resources.find ( name ) ;
+
+    if ( iterator == this->resources.end ( ) )
+        throw std::runtime_error ( "\"" + name + "\" wasn't found inside the resource manager!" ) ;
+
+    return * iterator->second ;
 }
 template <typename Type>
 const Type & ResourceManager <Type>::get ( const std::string & name ) const
 {
-    return * this->resources.at ( name ) ;
+    auto iterator = this->resources.find ( name ) ;
+
+    if ( iterator == this->resources.end ( ) )
+        throw std::runtime_error ( "The resource \"" + name + "\" wasn't found inside the resource manager!" ) ;
+
+    return * iterator->second ;
 }
 
 template <typename Type>
