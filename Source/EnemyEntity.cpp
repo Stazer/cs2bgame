@@ -89,15 +89,4 @@ void EnemyEntity::draw ( sf::RenderTarget & target ) const
 
     if ( this->isAlive ( ) )
         target.draw ( this->healthBar ) ;
-
-    sf::CircleShape circle ;
-
-    circle.setOutlineColor ( sf::Color ( 255 , 0 , 0 , 100 ) ) ;
-    circle.setOutlineThickness ( 1 ) ;
-    circle.setFillColor(sf::Color ( 0 , 0 , 0 , 0 ) ) ;
-    circle.setRadius(this->getDetectionDistance());
-    circle.setOrigin(sf::Vector2f (circle.getLocalBounds().width / 2.0f , circle.getLocalBounds().height / 2.0f ));
-    circle.setPosition ( this->getPosition());
-
-    target.draw ( circle ) ;
 }
