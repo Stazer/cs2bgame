@@ -1,15 +1,6 @@
 /* special file for implementing template classes */
 
 template <typename Type>
-ResourceManager <Type>::~ResourceManager ( )
-{
-    for ( auto iterator = this->resources.begin ( ) ; iterator != this->resources.end ( ) ; ++iterator )
-    {
-        delete iterator->second ;
-    }
-}
-
-template <typename Type>
 void ResourceManager <Type>::add ( const std::string & file )
 {
     // extract the filename from the given file parameter
@@ -25,9 +16,7 @@ void ResourceManager <Type>::add ( const std::string & file )
 template <typename Type>
 void ResourceManager <Type>::add ( const std::string & name , const std::string & file )
 {
-    this->resources [ name ] = new Type ( ) ;
-
-    this->loadResource ( * this->resources [ name ] , file ) ;
+    this->loadResource ( this->resources [ name ] , file ) ;
 }
 
 template <typename Type>
@@ -44,10 +33,7 @@ Type & ResourceManager <Type>::get ( const std::string & name )
     if ( iterator == this->resources.end ( ) )
         throw std::out_of_range ( "\"" + name + "\" wasn't found inside the resource manager!" ) ;
 
-    if ( ! iterator->second )
-        throw std::runtime_error ( "\"" + name + "\" returns a null pointer" ) ;
-
-    return * iterator->second ;
+    return iterator->second ;
 }
 template <typename Type>
 const Type & ResourceManager <Type>::get ( const std::string & name ) const
@@ -57,10 +43,7 @@ const Type & ResourceManager <Type>::get ( const std::string & name ) const
     if ( iterator == this->resources.end ( ) )
         throw std::runtime_error ( "The resource \"" + name + "\" wasn't found inside the resource manager!" ) ;
 
-    if ( ! iterator->second )
-        throw std::runtime_error ( "\"" + name + "\" returns a null pointer" ) ;
-
-    return * iterator->second ;
+    return iterator->second ;
 }
 
 template <typename Type>

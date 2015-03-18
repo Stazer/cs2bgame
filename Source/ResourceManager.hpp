@@ -14,7 +14,6 @@ class ResourceManager
         ResourceManager ( ) = default ;
         ResourceManager ( const ResourceManager & ResourceManager ) = delete ;
         ResourceManager & operator = ( const ResourceManager & ResourceManager ) =  delete ;
-        ~ResourceManager ( ) ;
 
         void add ( const std::string & file ) ;
         void add ( const std::string & name , const std::string & file ) ;
@@ -35,7 +34,7 @@ class ResourceManager
         bool loadResource ( sf::Music & resource , const std::string & file ) const ;
         bool loadResource ( sf::Font & resource , const std::string & file ) const ;
 
-        std::unordered_map <std::string , Type *> resources ;
+        std::unordered_map <std::string , Type> resources ;
 } ;
 
 using TextureManager = ResourceManager <sf::Texture> ;
