@@ -1,17 +1,8 @@
-/* for help look at:
- http://www.sfml-dev.org/tutorials/2.2/
- */
-
-/*
-
- */
-
 #pragma once
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include <memory>
 #include <map>
 #include <functional>
 #include "ResourceManager.hpp"
@@ -40,6 +31,7 @@ class Map
 {
 	public :
 		Map ( Game & game ) ;
+		~Map ( ) ;
 
 		Map ( const Map & map ) = delete ;
 		Map & operator = ( const Map & map ) = delete ;
@@ -52,8 +44,8 @@ class Map
 
 		void clear ( ) ;
 
-        std::vector <std::shared_ptr <Entity>> & getEntities ( ) ;
-        const std::vector <std::shared_ptr <Entity>> & getEntities ( ) const ;
+        std::vector <Entity *> & getEntities ( ) ;
+        const std::vector <Entity *> & getEntities ( ) const ;
 
         /* Justus and Brendan will implement */
 		void update ( const sf::Time & frameTime ) ;
@@ -67,9 +59,9 @@ class Map
 
         /* stores chunks with position of its key, for making the random map generation
         possible */
-		std::unordered_map <sf::Vector2i , std::shared_ptr <MapChunk>> chunks ;
+		std::unordered_map <sf::Vector2i , MapChunk> chunks ;
 
         /* vector stores entity sprites, player entity, enemy entity, and static
         entities like tress, rocks, and lava */
-        std::vector <std::shared_ptr <Entity>> entities ;
+        std::vector <Entity *> entities ;
 } ;

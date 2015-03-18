@@ -36,7 +36,7 @@ void Interface::handle ( const sf::Event & event )
     {
         for ( auto iterator = this->game.getMap ( ).getEntities ( ).begin ( ) ; iterator != this->game.getMap ( ).getEntities ( ).end ( ) ; ++iterator )
         {
-            EnemyEntity * enemy = dynamic_cast <EnemyEntity *> ( iterator->get ( ) ) ;
+            EnemyEntity * enemy = dynamic_cast <EnemyEntity *> ( * iterator ) ;
 
             if ( enemy && enemy->getGlobalBounds ( ).contains ( this->window.mapPixelToCoords ( sf::Vector2i ( event.mouseButton.x , event.mouseButton.y ) ) ) && this->game.getPlayer ( ).inRange ( * enemy ) )
             {

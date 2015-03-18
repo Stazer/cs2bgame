@@ -5,7 +5,6 @@
 #include <string>
 #include <unordered_map>
 #include <algorithm>
-#include <memory>
 #include <iostream>
 
 template <typename Type>
@@ -15,6 +14,7 @@ class ResourceManager
         ResourceManager ( ) = default ;
         ResourceManager ( const ResourceManager & ResourceManager ) = delete ;
         ResourceManager & operator = ( const ResourceManager & ResourceManager ) =  delete ;
+        ~ResourceManager ( ) ;
 
         void add ( const std::string & file ) ;
         void add ( const std::string & name , const std::string & file ) ;
@@ -26,13 +26,16 @@ class ResourceManager
 
         bool exists ( const std::string & name ) const ;
 
+        Type & operator [ ] ( const std::string & name ) ;
+        const Type & operator [ ] ( const std::string & name ) const ;
+
 	private :
         bool loadResource ( sf::Texture & resource , const std::string & file ) const ;
         bool loadResource ( sf::SoundBuffer & resource , const std::string & file ) const ;
         bool loadResource ( sf::Music & resource , const std::string & file ) const ;
         bool loadResource ( sf::Font & resource , const std::string & file ) const ;
 
-        std::unordered_map <std::string , std::shared_ptr <Type>> resources ;
+        std::unordered_map <std::string , Type *> resources ;
 } ;
 
 using TextureManager = ResourceManager <sf::Texture> ;
