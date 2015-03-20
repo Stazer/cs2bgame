@@ -12,5 +12,4 @@ StaticEntity::StaticEntity ( Map & map , const sf::Vector2f & position ,  const 
 
 void StaticEntity::update ( const sf::Time & frameTime )
 {
-
 }

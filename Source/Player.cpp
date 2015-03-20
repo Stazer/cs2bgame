@@ -14,6 +14,7 @@ Player::Player ( Map & map , const sf::Vector2f & position , const sf::Texture &
 
 void Player::update ( const sf::Time & frameTime )
 {
+    // regenerate the health; the player gets each second 5 health back
     if ( this->healthTimer.getElapsedTime ( ).asSeconds ( ) >= 1.0f )
     {
         this->increaseHealth ( 5 ) ;

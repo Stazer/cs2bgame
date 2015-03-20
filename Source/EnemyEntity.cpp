@@ -30,6 +30,7 @@ float EnemyEntity::getDetectionDistance ( ) const
 /*  */
 void EnemyEntity::update ( const sf::Time & frameTime )
 {
+    // dont update enemy logic when enemy is dead
     if ( this->isDead ( ) )
         return ;
 
@@ -43,10 +44,11 @@ void EnemyEntity::update ( const sf::Time & frameTime )
     this->healthBar.setOrigin ( this->healthBar.getSize ( ) * 0.5f ) ;
     this->healthBar.setPosition ( this->getPosition ( ).x , this->getPosition ( ).y - this->getLocalBounds ( ).height ) ;
 
-    //
+    // get the difference between enemys position and players position; used for collision
     float dX = this->getPosition ( ).x - this->getMap ( ).getPlayer ( ).getPosition ( ).x ;
     float dY = this->getPosition ( ).y - this->getMap ( ).getPlayer ( ).getPosition ( ).y ;
 
+    // if no target(player) is set then check if the player is inside the detection distance
     if ( ! this->targetEntity )
     {
         const float radiusSum = this->getDetectionDistance ( ) + this->getMap ( ).getPlayer ( ).getRadius ( ) ;
@@ -56,8 +58,10 @@ void EnemyEntity::update ( const sf::Time & frameTime )
     }
     else
     {
+        // check if we are in attackrange
         if ( ! this->inRange ( * this->targetEntity ) )
         {
+            // move towards the target
             dX = static_cast <int> ( dX ) ;
             dY = static_cast <int> ( dY ) ;
 
@@ -71,6 +75,7 @@ void EnemyEntity::update ( const sf::Time & frameTime )
             if ( dY < 0 )
                 this->moveDown ( ) ;
         }
+        // attack the target every second
         else if ( this->attackTimer.getElapsedTime ( ).asSeconds ( ) >= 1.0f )
         {
             this->attackTimer.restart ( ) ;
@@ -87,6 +92,5 @@ void EnemyEntity::draw ( sf::RenderTarget & target ) const
 {
     DynamicEntity::draw ( target ) ;
 
-    if ( this->isAlive ( ) )
-        target.draw ( this->healthBar ) ;
+    target.draw ( this->healthBar ) ;
 }

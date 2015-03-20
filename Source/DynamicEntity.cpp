@@ -111,6 +111,7 @@ bool DynamicEntity::isAlive ( ) const
  player position */
 void DynamicEntity::update ( const sf::Time & frameTime )
 {
+    // handle the first part of the animated sprite
     if ( ! this->animationStep )
     {
         const sf::Texture * const texture = this->getTexture ( ) ;
@@ -123,13 +124,14 @@ void DynamicEntity::update ( const sf::Time & frameTime )
         ++this->animationStep ;
     }
 
+    // handle rotation of sprite
     if ( this->offset.x == -1 )
         if ( this->offset.y == 1 )
             this->sprite.setRotation ( 135 ) ;
         else if ( this->offset.y == -1 )
             this->sprite.setRotation ( -135 ) ;
         else
-            this->sprite.setRotation ( 180 ) ;//
+            this->sprite.setRotation ( 180 ) ;
     else if ( this->offset.x == 1 )
         if ( this->offset.y == 1 )
             this->sprite.setRotation ( 45 ) ;
@@ -142,25 +144,27 @@ void DynamicEntity::update ( const sf::Time & frameTime )
     else if ( this->offset.y == -1 )
             this->sprite.setRotation ( -90 ) ;
 
+    // handle sprite movement
     this->offset.x *= frameTime.asSeconds ( ) * this->getSpeedPoints ( ) ;
     this->offset.y *= frameTime.asSeconds ( ) * this->getSpeedPoints ( )  ;
 
+    // handle animation of movement
     const sf::Texture * const texture = this->getTexture ( ) ;
-
     if ( texture && ( offset.x || offset.y ) )
     {
         if ( this->animationTimer.getElapsedTime ( ).asSeconds ( )  * this->getSpeedPoints ( ) * 0.001f > frameTime.asSeconds ( ) )
         {
             this->setTextureRect ( sf::IntRect ( ( this->animationStep - 1 ) * texture->getSize ( ).x / 2.0f , 0 , texture->getSize ( ).x / 2.0f , texture->getSize ( ).y )  ) ;
 
+            // use the ?-operator for if-else statement
             this->animationStep = ( this->animationStep == 1 ) ? 2 : 1 ;
 
             this->animationTimer.restart ( ) ;
         }
     }
 
+    // move the sprite and reset the offset vector
     this->move ( this->offset ) ;
-
     this->offset = sf::Vector2f ( ) ;
 }
 

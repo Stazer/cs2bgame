@@ -66,6 +66,8 @@ EnemyEntity * EnemyEntityTemplate::createEnemyEntity ( Map & map , const sf::Vec
 
 void EnemyEntityTemplate::parse ( std::istream & stream )
 {
+    // reading in enemyentites statistics
+    // textureName;maximumHealth;attackPoints;speedPoints;detectionDistance;
     std::getline ( stream , this->textureName , ';' ) ;
 
     std::string buffer ;

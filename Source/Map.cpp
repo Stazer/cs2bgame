@@ -11,6 +11,7 @@ Map::Map ( Game & game ) :
 }
 Map::~Map ( )
 {
+    // delete all dynamically allocated entites
     for ( auto iterator = this->entities.begin ( ) ; iterator != this->entities.end ( ) ; ++iterator )
     {
         delete * iterator ;
@@ -100,8 +101,8 @@ void Map::update ( const sf::Time & frameTime )
         }
     }
 
-    // check every second for dead entities and remove them from the map, since they are not needed anymore
-    if ( this->entityTimer.getElapsedTime ( ).asSeconds ( ) >= 1.0f )
+    // check every 100ms for dead entities and remove them from the map, since they are not needed anymore
+    if ( this->entityTimer.getElapsedTime ( ).asSeconds ( ) >= 0.1f )
     {
         for ( auto iterator = this->entities.begin ( ) ; iterator != this->entities.end ( ) ; ++iterator )
         {

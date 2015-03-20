@@ -2,6 +2,7 @@
 
 MapChunk::MapChunk ( Map & map , const sf::Vector2f & position , const sf::Vector2f & size )
 {
+    // insert four MapAreas into the chunk, with a random size
     sf::Vector2f firstAreaSize ( std::rand ( ) % static_cast <int> ( size.x ) , std::rand ( ) % static_cast <int> ( size.y ) ) ;
 
     sf::Vector2f tempSize = firstAreaSize ;

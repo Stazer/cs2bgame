@@ -10,6 +10,7 @@ MapArea::MapArea ( Map & map , MapArea::TileType type , const sf::Vector2f & pos
 {
     sf::Texture * texture = nullptr ;
 
+    // set the type of the texture by using the MapArea::TileType
     if ( type == MapArea::Dirt )
         texture = & map.getGame ( ).getTextureManager ( ).get ( "Dirt" ) ;
     else if ( type == MapArea::Snow )
@@ -22,6 +23,7 @@ MapArea::MapArea ( Map & map , MapArea::TileType type , const sf::Vector2f & pos
     const float maxPositionX = position.x + size.x ;
     const float maxPositionY = position.y + size.y ;
 
+    // fill the area with the texture
     for ( float x = position.x ; x < maxPositionX ; x += texture->getSize ( ).x )
     {
         for ( float y = position.y ; y < maxPositionY ; y += texture->getSize ( ).y )
@@ -42,6 +44,7 @@ MapArea::MapArea ( Map & map , MapArea::TileType type , const sf::Vector2f & pos
 
             sprite.setTextureRect ( sf::IntRect ( sf::Vector2i ( ), newSize ) ) ;
 
+            // add the new tile to the vector
             this->tiles.push_back ( sprite ) ;
         }
     }

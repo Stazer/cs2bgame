@@ -8,8 +8,8 @@ Game::Game ( TextureManager & textureManager, AudioManager & audioManager , Font
 	player ( this->map ) ,
 	interface ( * this , window )
 {
+    // setup instructionsprite(menu)
     this->instructions.setTexture ( textureManager.get ( "Instructions" ) ) ;
-
     this->instructions.setOrigin ( this->instructions.getLocalBounds ( ).width / 2.0f , this->instructions.getLocalBounds ( ).height / 2.0f ) ;
     this->instructions.setPosition ( window.getView ( ).getCenter ( ) ) ;
 }
@@ -120,6 +120,7 @@ void Game::handle ( const sf::Event & event )
 }
 void Game::update ( const sf::Time & frameTime )
 {
+    // update the game logic if we are playing the game
     if ( this->isPlaying )
     {
         this->map.update ( frameTime ) ;
@@ -144,8 +145,10 @@ void Game::draw ( sf::RenderTarget & target )
 
 void Game::play ( )
 {
+    // read creatures
     this->enemyEntityTemplateManager.readFile ( "Data/Creatures" ) ;
 
+    // setup player statistics
     this->player.setMaximumHealth ( 1000 ) ;
     this->player.setHealth ( 1000 ) ;
     this->player.setTexture ( this->textureManager.get ( "Player" ) ) ;
@@ -153,15 +156,18 @@ void Game::play ( )
     this->player.setSpeedPoints ( 1000 ) ;
     this->player.setAttackPoints ( 100 ) ;
 
+    // reset statistics
     this->kills = 0 ;
     this->timer.restart ( ) ;
 
+    // clear the map
     this->map.clear ( ) ;
 
     this->isPlaying = true ;
 }
 void Game::stop ( )
 {
+    // reset the view
     this->interface.getWindow ( ).setView ( this->interface.getWindow ( ).getDefaultView ( ) ) ;
 
     this->isPlaying = false ;
