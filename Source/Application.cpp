@@ -71,6 +71,11 @@ int Application::main ( const std::vector <std::string> & arguments )
         std::cout << exception.what ( ) ;
         return -1 ;
     }
+    catch ( ... )
+    {
+    	std::cout << "unhandled exception was throwed\n" ;
+    	return -1 ;
+    }
 
     return 0 ;
 }
