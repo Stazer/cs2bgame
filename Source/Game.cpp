@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "AudioManager.hpp"
 
 Game::Game ( TextureManager & textureManager, AudioManager & audioManager , FontManager & fontManager , sf::RenderWindow & window ) :
 	textureManager ( textureManager ) ,
@@ -12,6 +13,9 @@ Game::Game ( TextureManager & textureManager, AudioManager & audioManager , Font
     this->instructions.setTexture ( textureManager.get ( "Instructions" ) ) ;
     this->instructions.setOrigin ( this->instructions.getLocalBounds ( ).width / 2.0f , this->instructions.getLocalBounds ( ).height / 2.0f ) ;
     this->instructions.setPosition ( window.getView ( ).getCenter ( ) ) ;
+
+    // setup song
+    this->getAudioManager ( ).getMusic ( "Song" ).play ( ) ;
 }
 
 const TextureManager & Game::getTextureManager ( ) const

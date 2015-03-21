@@ -24,7 +24,8 @@ int Application::main ( const std::vector <std::string> & arguments )
         FontManager fontManager ;
 
         // fill resource managers with resources
-        audioManager.getSoundBufferManager ( ).add ( "Data/Hit.ogg" ) ;
+        audioManager.getSoundBufferManager ( ).add ( "Data/Hit.wav" ) ;
+        audioManager.getMusicManager ( ).add ( "Data/Song.wav" ) ;
         textureManager.add ( "Data/Dirt.png" ) ;
         textureManager.add ( "Data/Grass.png" ) ;
         textureManager.add ( "Data/Sand.png" ) ;
@@ -32,6 +33,7 @@ int Application::main ( const std::vector <std::string> & arguments )
         textureManager.add ( "Data/Player.png" ) ;
         textureManager.add ( "Data/Mech.png" ) ;
         textureManager.add ( "Data/BigMech.png" ) ;
+        textureManager.add ( "Data/Mage.png" ) ;
         textureManager.add ( "Data/Instructions.png" ) ;
         fontManager.add ( "Data/Arial.ttf" ) ;
 

@@ -111,7 +111,7 @@ bool DynamicEntity::isAlive ( ) const
  player position */
 void DynamicEntity::update ( const sf::Time & frameTime )
 {
-    // handle the first part of the animated sprite
+    // check if animation is initialized
     if ( ! this->animationStep )
     {
         const sf::Texture * const texture = this->getTexture ( ) ;
@@ -148,7 +148,7 @@ void DynamicEntity::update ( const sf::Time & frameTime )
     this->offset.x *= frameTime.asSeconds ( ) * this->getSpeedPoints ( ) ;
     this->offset.y *= frameTime.asSeconds ( ) * this->getSpeedPoints ( )  ;
 
-    // handle animation of movement
+    // play the animation on movement
     const sf::Texture * const texture = this->getTexture ( ) ;
     if ( texture && ( offset.x || offset.y ) )
     {
