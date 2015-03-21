@@ -41,7 +41,7 @@ const Type & ResourceManager <Type>::get ( const std::string & name ) const
     auto iterator = this->resources.find ( name ) ;
 
     if ( iterator == this->resources.end ( ) )
-        throw std::runtime_error ( "The resource \"" + name + "\" wasn't found inside the resource manager!" ) ;
+        throw std::out_of_range ( "The resource \"" + name + "\" wasn't found inside the resource manager!" ) ;
 
     return iterator->second ;
 }
