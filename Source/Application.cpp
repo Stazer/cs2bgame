@@ -10,7 +10,7 @@ int Application::main ( const std::vector <std::string> & arguments )
     {
         // initialize random number generator
         srand ( time ( nullptr ) ) ;
-
+		
         // setup frametime
         sf::Clock frameClock ;
         sf::Time frameTime ;
