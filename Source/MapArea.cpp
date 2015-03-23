@@ -49,6 +49,22 @@ MapArea::MapArea ( Map & map , MapArea::TileType type , const sf::Vector2f & pos
         }
     }
 }
+MapArea::MapArea ( const MapArea & right ) :
+	map ( right.map ) ,
+	type ( right.type ) ,
+	position ( right.position ) ,
+	size ( right.size ) ,
+	tiles ( right.tiles )
+{
+}
+
+MapArea & MapArea::operator = ( const MapArea & right )
+{
+	this->type = right.type ;
+	this->position = right.position ;
+	this->size = right.size ;
+	this->tiles = right.tiles ;
+}
 
 MapArea::TileType MapArea::getType ( ) const
 {

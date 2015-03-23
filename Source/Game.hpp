@@ -14,6 +14,9 @@ class Game
 {
 	public :
         Game ( TextureManager & textureManager , AudioManager & audioManager , FontManager & fontManager , sf::RenderWindow & target ) ;
+        Game ( const Game & game ) = delete ;
+
+		Game & operator = ( const Game & game ) = delete ;
 
         const TextureManager & getTextureManager ( ) const ;
         TextureManager & getTextureManager ( ) ;

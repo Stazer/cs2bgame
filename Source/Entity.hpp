@@ -20,7 +20,11 @@ class Entity
 	public :
 		Entity ( Map & map ) ;
 		Entity ( Map & map , const sf::Vector2f & position , const sf::Texture & texture ) ;
-        virtual ~Entity () = default;
+        Entity ( const Entity & entity ) = delete ;
+
+        virtual ~Entity () = default;        
+
+		Entity & operator = ( const Entity & entity ) = delete ;
 
 		void setTexture ( const sf::Texture & texture ) ;
 		const sf::Texture * const getTexture ( ) const ;

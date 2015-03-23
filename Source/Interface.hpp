@@ -12,6 +12,9 @@ class Interface
 {
     public :
         Interface ( Game & game , sf::RenderWindow & window ) ;
+        Interface ( const Interface & right ) = delete ;
+
+		Interface & operator = ( const Interface & right ) = delete ;
 
         const sf::View & getCamera ( ) const ;
 

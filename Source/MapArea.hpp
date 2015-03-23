@@ -25,9 +25,9 @@ class MapArea
 
 		MapArea ( ) = default ; // hack for std::tuple, std::pair
 		MapArea ( Map & map , TileType type , const sf::Vector2f & position , const sf::Vector2f & size ) ;
-		MapArea ( const MapArea & right ) = delete ;
+		MapArea ( const MapArea & right ) ;
 
-		MapArea & operator = ( const MapArea & right ) = delete ;
+		MapArea & operator = ( const MapArea & right ) ;
 
 		TileType getType ( ) const ;
 		const sf::Vector2f & getPosition ( ) const ;
