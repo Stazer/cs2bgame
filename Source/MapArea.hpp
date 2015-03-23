@@ -23,7 +23,11 @@ class MapArea
 			MAX
 		} ;
 
+		MapArea ( ) = default ; // hack for std::tuple, std::pair
 		MapArea ( Map & map , TileType type , const sf::Vector2f & position , const sf::Vector2f & size ) ;
+		MapArea ( const MapArea & right ) = delete ;
+
+		MapArea & operator = ( const MapArea & right ) = delete ;
 
 		TileType getType ( ) const ;
 		const sf::Vector2f & getPosition ( ) const ;
